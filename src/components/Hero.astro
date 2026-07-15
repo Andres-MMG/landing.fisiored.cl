@@ -1,6 +1,12 @@
 ---
+import { clinic } from '../data/clinic';
+import { team } from '../data/team';
+
 const heroFallback =
   'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80';
+const specialistCount = team.length;
+---
+
 ---
 
 <section id="inicio" class="relative min-h-[760px] md:min-h-[820px] flex items-center overflow-hidden bg-surface">
@@ -15,16 +21,15 @@ const heroFallback =
     <div class="space-y-8 section-fade">
       <div class="inline-flex items-center gap-2 bg-primary-fixed/40 text-primary px-4 py-2 rounded-full font-label-md text-label-md">
         <span class="material-symbols-outlined text-[18px]">verified</span>
-        Más de 10 años de experiencia
+        Centro fundado en {clinic.established} · Convenio Fonasa
       </div>
 
       <h1 class="font-headline text-headline-xl text-on-surface max-w-xl">
-        Tu bienestar, nuestra <span class="text-primary">prioridad.</span>
+        Centro médico y de rehabilitación en <span class="text-primary">Nueva Imperial</span>
       </h1>
 
       <p class="font-body text-body-lg text-on-surface-variant max-w-lg leading-relaxed">
-        El primer centro médico y de rehabilitación integral en Nueva Imperial.
-        Atención especializada para el desarrollo y salud de toda tu familia.
+        8 especialidades — kinesiología, pediatría, terapia ocupacional, fonoaudiología, nutrición, psicología, osteopatía y masoterapia — atendidas por un equipo interdisciplinario con atención personalizada para niños, adolescentes y adultos. Convenio Fonasa.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4">
@@ -51,7 +56,7 @@ const heroFallback =
         </div>
         <div>
           <div class="font-headline text-headline-sm text-on-surface">+5.000</div>
-          <div class="font-label-md text-label-md text-on-surface-variant">pacientes atendidos</div>
+          <div class="font-label-md text-label-md text-on-surface-variant">pacientes atendidos · {specialistCount} especialistas</div>
         </div>
       </div>
     </div>

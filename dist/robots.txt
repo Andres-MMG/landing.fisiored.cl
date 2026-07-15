@@ -1,0 +1,74 @@
+# FisioRed — fisiored.cl
+# Robots policy: open for traditional search + AI/LLM citability.
+# Last updated: 2026-07-15
+
+User-agent: *
+Allow: /
+
+# ──────────────────────────────────────────────────────────────
+# AI / LLM crawlers — explicitly permitted for GEO/AEO citability
+# ──────────────────────────────────────────────────────────────
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google (AI Overviews + Vertex)
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# Microsoft Copilot / Bing
+User-agent: MSNBot-Media
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl (foundation for many AI corpora)
+User-agent: CCBot
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Marketing / analytics — block noise
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# ──────────────────────────────────────────────────────────────
+# Endpoints
+# ──────────────────────────────────────────────────────────────
+
+Sitemap: https://fisiored.cl/sitemap-index.xml
+Host: https://fisiored.cl

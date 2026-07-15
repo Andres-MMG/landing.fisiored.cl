@@ -9,8 +9,9 @@
 .claude/
 skills-lock.json
 
-# Original private assets (use src/assets/team/ instead)
-data/
+# Original private assets at repo root (use src/assets/team/ instead)
+/data/
+!src/data/
 
 # Logs
 logs

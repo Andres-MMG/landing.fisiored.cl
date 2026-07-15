@@ -1,0 +1,86 @@
+---
+import { clinic } from '../data/clinic';
+
+const faqs = [
+  {
+    q: '¿Qué servicios ofrece FisioRed en Nueva Imperial?',
+    a: 'FisioRed ofrece 8 especialidades: Kinesiología y rehabilitación, Pediatría (liderada por la Dra. Maria Castillo), Terapia Ocupacional, Fonoaudiología, Nutrición, Psicología, Osteopatía y Masoterapia. Atendemos niños, adolescentes y adultos en Ernesto Riquelme 511, Nueva Imperial.',
+  },
+  {
+    q: '¿Aceptan convenio Fonasa?',
+    a: 'Sí. FisioRed acepta Fonasa y principales isapres. Recomendamos consultar al momento de agendar tu hora indicando tu plan específico para confirmar cobertura.',
+  },
+  {
+    q: '¿Cuál es el horario de atención?',
+    a: 'Atendemos de lunes a viernes de 09:00 a 20:00 hrs, y los sábados de 09:00 a 14:00 hrs. Todos los servicios requieren cita previa.',
+  },
+  {
+    q: '¿Cómo puedo agendar una hora?',
+    a: 'Tienes tres canales: (1) WhatsApp al +56 9 2009 2455, (2) llamada telefónica al mismo número, o (3) el formulario de contacto en esta página. Te confirmaremos dentro del horario de atención.',
+  },
+  {
+    q: '¿Necesito derivación médica para atenderme?',
+    a: 'No es obligatoria para kinesiología, terapia ocupacional, fonoaudiología, nutrición, psicología, osteopatía o masoterapia. Para pediatría y evaluación médica puede requerirse según el caso particular.',
+  },
+  {
+    q: '¿Atienden a niños y adultos?',
+    a: 'Sí. Pediatría y estimulación temprana atienden desde recién nacidos. Kinesiología, terapia ocupacional, fonoaudiología, nutrición, psicología, osteopatía y masoterapia atienden a niños, adolescentes y adultos.',
+  },
+  {
+    q: '¿Dónde está ubicado FisioRed?',
+    a: 'Estamos en Ernesto Riquelme 511, comuna de Nueva Imperial, Región de la Araucanía, Chile. Coordenadas: -38.7419, -72.9984. Llegar desde Temuco toma aproximadamente 35 minutos por la Ruta 5.',
+  },
+  {
+    q: '¿Cuánto dura una sesión típica?',
+    a: 'Las sesiones de kinesiología, terapia ocupacional, fonoaudiología y psicología duran entre 45 y 60 minutos. Las consultas de pediatría entre 20 y 30 minutos. Te confirmamos la duración al agendar.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${clinic.url}#faq`,
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+---
+
+<section id="preguntas" class="py-20 md:py-24 bg-surface">
+  <div class="px-4 md:px-margin-desktop max-w-container-max mx-auto section-fade">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <span class="inline-block bg-primary-fixed text-on-primary-fixed px-4 py-1.5 rounded-full font-label-md text-label-md mb-4">Preguntas frecuentes</span>
+      <h2 class="font-headline text-headline-lg text-on-surface mb-4">Lo que nos preguntan más seguido</h2>
+      <p class="font-body text-body-md text-on-surface-variant">
+        Respuestas directas y verificables sobre servicios, horarios y reservas en FisioRed.
+      </p>
+    </div>
+
+    <div class="max-w-3xl mx-auto space-y-4">
+      {
+        faqs.map((f, i) => (
+          <details
+            name="faq"
+            class="group bg-white rounded-2xl border border-outline-variant/40 soft-shadow-sm"
+            open={i === 0}
+          >
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4 px-6 py-5 font-label-md text-label-md text-on-surface">
+              <span>{f.q}</span>
+              <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <div class="px-6 pb-6 pt-0 font-body text-body-md text-on-surface-variant leading-relaxed">
+              {f.a}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} is:inline />

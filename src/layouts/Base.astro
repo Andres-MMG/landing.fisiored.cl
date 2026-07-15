@@ -1,38 +1,234 @@
 ---
 import '../styles/global.css';
+import { clinic } from '../data/clinic';
+import { services } from '../data/services';
+import { team } from '../data/team';
 
 interface Props {
   title: string;
   description?: string;
+  /** Optional canonical override. Defaults to current URL. */
+  canonical?: string;
 }
 
 const {
   title,
-  description = 'FisioRed — Centro médico y de rehabilitación en Nueva Imperial. Kinesiología, pediatría, osteopatía, fonoaudiología, nutrición y más. Agenda tu hora por WhatsApp.',
+  description = 'FisioRed — Centro médico y de rehabilitación en Nueva Imperial. 8+ especialidades, +5.000 pacientes, convenio Fonasa. Agenda tu hora por WhatsApp.',
+  canonical = Astro.url.href,
 } = Astro.props;
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Canonical URL (strip trailing slash if present)
+// ──────────────────────────────────────────────────────────────────────────────
+const canonicalUrl = canonical.replace(/\/$/, '') || `${Astro.site}`;
+
+// ──────────────────────────────────────────────────────────────────────────────
+// JSON-LD entities
+// ──────────────────────────────────────────────────────────────────────────────
+const orgId = `${clinic.url}#organization`;
+const siteId = `${clinic.url}#website`;
+const pageId = `${clinic.url}#webpage`;
+const clinicId = `${clinic.url}#clinic`;
+const breadcrumbId = `${clinic.url}#breadcrumb`;
+const logoUrl = `${clinic.url}/logo2.png`;
+
+const personEntities = team.map((member) => ({
+  '@type': 'Person',
+  '@id': `${clinic.url}#person-${member.slug}`,
+  name: member.name,
+  jobTitle: member.badge.text,
+  worksFor: { '@id': clinicId },
+}));
+
+const serviceEntities = services.map((service) => ({
+  '@type': 'Service',
+  '@id': `${clinic.url}#service-${service.slug}`,
+  name: service.name,
+  description: service.description,
+  serviceType: service.name,
+  provider: { '@id': clinicId },
+  areaServed: clinic.areaServed.map((area) => ({
+    '@type': area.type,
+    name: area.name,
+  })),
+}));
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'MedicalClinic',
+      '@id': clinicId,
+      name: clinic.brandName,
+      alternateName: clinic.legalName,
+      description: clinic.longDescription,
+      url: clinic.url,
+      logo: logoUrl,
+      image: logoUrl,
+      telephone: clinic.phone,
+      email: clinic.email,
+      foundingDate: clinic.established,
+      priceRange: clinic.priceRange,
+      currenciesAccepted: clinic.currenciesAccepted,
+      paymentAccepted: clinic.paymentAccepted,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: clinic.address.streetAddress,
+        addressLocality: clinic.address.addressLocality,
+        addressRegion: clinic.address.addressRegion,
+        postalCode: clinic.address.postalCode,
+        addressCountry: clinic.address.addressCountry,
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: clinic.geo.latitude,
+        longitude: clinic.geo.longitude,
+      },
+      openingHoursSpecification: clinic.openingHours.map((h) => ({
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: h.dayOfWeek,
+        opens: h.opens,
+        closes: h.closes,
+      })),
+      medicalSpecialty: clinic.medicalSpecialty,
+      availableService: serviceEntities.map((s) => ({ '@id': s['@id'] })),
+      employee: personEntities.map((p) => ({ '@id': p['@id'] })),
+      sameAs: [clinic.instagramUrl, clinic.facebookUrl],
+      isAcceptingNewPatients: true,
+      medicalSpecialtyMore: {
+        // Convenience alias used by some parsers
+        '@type': 'MedicalSpecialty',
+      },
+    },
+    {
+      '@type': 'Organization',
+      '@id': orgId,
+      name: clinic.legalName,
+      alternateName: clinic.brandName,
+      url: clinic.url,
+      logo: logoUrl,
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          telephone: clinic.phone,
+          contactType: 'customer service',
+          areaServed: 'CL',
+          availableLanguage: ['es-CL'],
+        },
+      ],
+      sameAs: [clinic.instagramUrl, clinic.facebookUrl],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': siteId,
+      url: clinic.url,
+      name: clinic.brandName,
+      description: clinic.shortDescription,
+      publisher: { '@id': orgId },
+      inLanguage: 'es-CL',
+    },
+    {
+      '@type': 'WebPage',
+      '@id': pageId,
+      url: canonicalUrl,
+      name: title,
+      description,
+      isPartOf: { '@id': siteId },
+      about: { '@id': clinicId },
+      primaryImageOfPage: { '@id': logoUrl },
+      inLanguage: 'es-CL',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': breadcrumbId,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: `${clinic.url}#inicio`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Servicios',
+          item: `${clinic.url}#servicios`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Equipo',
+          item: `${clinic.url}#equipo`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 4,
+          name: 'Nosotros',
+          item: `${clinic.url}#nosotros`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 5,
+          name: 'Contacto',
+          item: `${clinic.url}#contacto`,
+        },
+      ],
+    },
+    ...serviceEntities,
+    ...personEntities,
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="es" class="light">
+<html lang="es-CL" class="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#006857" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+    <meta name="theme-color" content="#006857" />
+
+    <!-- GEO / local search -->
+    <meta name="geo.region" content="CL-AR" />
+    <meta name="geo.placename" content="Nueva Imperial" />
+    <meta name="geo.position" content={`${clinic.geo.latitude};${clinic.geo.longitude}`} />
+    <meta name="ICBM" content={`${clinic.geo.latitude}, ${clinic.geo.longitude}`} />
+
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="es-CL" href={canonicalUrl} />
+    <link rel="alternate" hreflang="es" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={clinic.brandName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={logoUrl} />
+    <meta property="og:image:width" content="280" />
+    <meta property="og:image:height" content="112" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:locale:alternate" content="es_ES" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={logoUrl} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/logo1.png" />
     <link rel="apple-touch-icon" href="/logo1.png" />
 
-    <!-- Open Graph -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:locale" content="es_CL" />
-
-    <title>{title}</title>
+    <!-- Structured data: MedicalClinic + Organization + WebSite + WebPage + BreadcrumbList + Service × 8 + Person × 8 -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
