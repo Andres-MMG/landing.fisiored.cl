@@ -1,0 +1,22 @@
+{
+  "name": "fisiored-landing",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FisioRed — Centro médico y de rehabilitación en Nueva Imperial",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.9",
+    "tailwindcss": "^4.3.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "typescript": "^6.0.3"
+  }
+}

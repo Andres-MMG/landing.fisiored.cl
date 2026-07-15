@@ -1,0 +1,48 @@
+---
+const props = [
+  {
+    icon: 'diversity_3',
+    title: 'Equipo Interdisciplinario',
+    description:
+      'Profesionales de diversas áreas trabajando en conjunto para un diagnóstico y tratamiento integral.',
+  },
+  {
+    icon: 'health_and_safety',
+    title: 'Calidad de Vida',
+    description:
+      'Nuestro enfoque es devolverte la autonomía y mejorar tu bienestar diario de forma sostenible.',
+  },
+  {
+    icon: 'ecg_heart',
+    title: 'Atención Especializada',
+    description:
+      'Protocolos personalizados adaptados a las necesidades específicas de cada paciente y cada edad.',
+  },
+];
+---
+
+<section class="py-20 md:py-24 bg-surface-container-low relative">
+  <div class="px-4 md:px-margin-desktop w-full max-w-container-max mx-auto section-fade">
+    <div class="text-center mb-14">
+      <span class="inline-block bg-primary-fixed text-on-primary-fixed px-4 py-1.5 rounded-full font-label-md text-label-md mb-4">Por qué elegirnos</span>
+      <h2 class="font-headline text-headline-lg text-on-surface mb-4">Cuidado profesional, trato humano</h2>
+      <p class="font-body text-body-md text-on-surface-variant max-w-2xl mx-auto">
+        Combinamos tecnología de vanguardia con un trato humano excepcional para tu rehabilitación y bienestar.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+      {
+        props.map((item) => (
+          <article class="bg-surface p-8 rounded-2xl border border-outline-variant/30 soft-shadow hover:-translate-y-2 transition-transform duration-300">
+            <div class="w-14 h-14 bg-primary-fixed/40 rounded-2xl flex items-center justify-center text-primary mb-6">
+              <span class="material-symbols-outlined text-[32px]">{item.icon}</span>
+            </div>
+            <h3 class="font-headline text-headline-sm mb-3">{item.title}</h3>
+            <p class="font-body text-body-md text-on-surface-variant">{item.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

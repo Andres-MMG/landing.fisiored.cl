@@ -1,0 +1,141 @@
+---
+import { services } from '../data/services';
+
+const colSpan: Record<string, string> = {
+  wide: 'md:col-span-8',
+  tall: 'md:col-span-4',
+  standard: 'md:col-span-4',
+  'wide-split': 'md:col-span-6',
+};
+---
+
+<section id="servicios" class="py-20 md:py-24 bg-surface">
+  <div class="px-4 md:px-margin-desktop w-full max-w-container-max mx-auto section-fade">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-6">
+      <div class="max-w-xl">
+        <span class="inline-block bg-tertiary-fixed text-on-tertiary-fixed px-4 py-1.5 rounded-full font-label-md text-label-md mb-4">Especialidades</span>
+        <h2 class="font-headline text-headline-lg text-on-surface mb-4">Servicios médicos y de rehabilitación</h2>
+        <p class="font-body text-body-md text-on-surface-variant">
+          Contamos con instalaciones modernas para ofrecerte la mejor experiencia en cada sesión.
+        </p>
+      </div>
+      <a href="#contacto" class="text-primary font-label-md text-label-md font-bold flex items-center gap-2 hover:underline">
+        Agendar evaluación
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+      {
+        services.map((service) => {
+          const baseClass = 'group rounded-2xl p-8 transition-all hover:-translate-y-1';
+
+          if (service.variant === 'filled-primary') {
+            return (
+              <article class={`${colSpan[service.size]} ${baseClass} bg-primary text-white soft-shadow relative overflow-hidden`}>
+                <div class="absolute bottom-0 right-0 w-32 h-32 opacity-20 translate-x-8 translate-y-8 pointer-events-none">
+                  <span class="material-symbols-outlined text-[120px] leading-none" style="font-variation-settings: 'FILL' 1;">{service.icon}</span>
+                </div>
+                <div class="relative z-10">
+                  <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined text-3xl">{service.icon}</span>
+                  </div>
+                  <h3 class="font-headline text-headline-md mb-4">{service.name}</h3>
+                  <p class="font-body text-body-md text-white/80 mb-8">{service.description}</p>
+                  <a href="#contacto" class="block w-full bg-white text-primary text-center px-6 py-3 rounded-full font-label-md text-label-md hover:bg-opacity-90 btn-tap transition-all">
+                    {service.ctaLabel ?? 'Más información'}
+                  </a>
+                </div>
+              </article>
+            );
+          }
+
+          if (service.variant === 'horizontal') {
+            return (
+              <article class={`${colSpan[service.size]} ${baseClass} bg-surface-container-low soft-shadow-sm border border-surface-variant hover:bg-white flex flex-col md:flex-row items-center gap-8`}>
+                <div class="flex-1">
+                  <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary">
+                      <span class="material-symbols-outlined text-3xl">{service.icon}</span>
+                    </div>
+                    <h3 class="font-headline text-headline-md text-on-surface">{service.name}</h3>
+                  </div>
+                  <p class="font-body text-body-md text-on-surface-variant max-w-2xl">{service.description}</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                  <a href="#equipo" class="border-2 border-primary text-primary px-6 py-3 rounded-full font-label-md text-label-md hover:bg-primary hover:text-white btn-tap transition-all text-center">
+                    Conocer Especialistas
+                  </a>
+                  <a href="#contacto" class="bg-primary text-white px-6 py-3 rounded-full font-label-md text-label-md hover:opacity-90 btn-tap transition-all text-center">
+                    Agendar Hora
+                  </a>
+                </div>
+              </article>
+            );
+          }
+
+          // default (standard / wide)
+          if (service.size === 'wide') {
+            return (
+              <article class={`${colSpan[service.size]} ${baseClass} relative bg-white soft-shadow border border-surface-variant`}>
+                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-500 pointer-events-none">
+                  <span class="material-symbols-outlined text-[120px] text-primary leading-none">{service.icon}</span>
+                </div>
+                <div class="relative z-10 flex flex-col h-full">
+                  <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+                      <span class="material-symbols-outlined text-3xl">{service.icon}</span>
+                    </div>
+                    <h3 class="font-headline text-headline-md text-on-surface">{service.name}</h3>
+                  </div>
+                  <p class="font-body text-body-md text-on-surface-variant mb-8 max-w-lg">{service.description}</p>
+                  <div class="mt-auto flex flex-wrap items-center justify-between gap-4">
+                    <ul class="flex flex-wrap gap-2">
+                      {service.tags?.map((tag) => (
+                        <li class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-xs font-semibold">{tag}</li>
+                      ))}
+                    </ul>
+                    <a href="#contacto" class="bg-primary text-white flex items-center gap-2 px-6 py-3 rounded-full font-label-md text-label-md hover:opacity-90 btn-tap transition-all">
+                      {service.ctaLabel ?? 'Consultar'}
+                      <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            );
+          }
+
+          // standard default
+          return (
+            <article class={`${colSpan[service.size]} ${baseClass} bg-white soft-shadow-sm border border-surface-variant`}>
+              {service.iconAsFullColor ? (
+                <div class="flex items-center gap-4 mb-6">
+                  <span class={`material-symbols-outlined text-4xl ${service.iconBg ?? 'text-primary'}`}>{service.icon}</span>
+                  <h3 class="font-headline text-headline-sm text-on-surface">{service.name}</h3>
+                </div>
+              ) : (
+                <>
+                  <div class={`w-12 h-12 rounded-xl ${service.iconBg ?? 'bg-primary-fixed'} flex items-center justify-center ${service.iconColor ?? 'text-primary'} mb-6`}>
+                    <span class="material-symbols-outlined text-3xl">{service.icon}</span>
+                  </div>
+                  <h3 class="font-headline text-headline-sm text-on-surface mb-3">{service.name}</h3>
+                </>
+              )}
+              <p class="font-body text-body-md text-on-surface-variant mb-6">{service.description}</p>
+              {service.ctaLabel ? (
+                <a href="#contacto" class="bg-tertiary-fixed text-on-tertiary-fixed px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 btn-tap transition-all inline-block">
+                  {service.ctaLabel}
+                </a>
+              ) : (
+                <a href="#contacto" class="text-primary font-bold flex items-center gap-1 group-hover:gap-2 transition-all font-label-md text-label-md">
+                  Más información
+                  <span class="material-symbols-outlined text-lg">chevron_right</span>
+                </a>
+              )}
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

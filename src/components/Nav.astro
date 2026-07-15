@@ -1,0 +1,105 @@
+---
+const navLinks = [
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#equipo', label: 'Equipo' },
+  { href: '#nosotros', label: 'Nosotros' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<header class="nav-shell fixed top-0 left-0 right-0 z-50 bg-surface h-20">
+  <nav class="flex items-center justify-between px-4 md:px-margin-desktop h-full max-w-container-max mx-auto">
+    <a href="#inicio" class="flex items-center gap-3">
+      <img
+        src="/logo2.png"
+        alt="FisioRed — Medicina, Rehabilitación y Estimulación"
+        class="h-12 md:h-14 w-auto"
+        width="280"
+        height="112"
+        loading="eager"
+      />
+    </a>
+
+    <div class="hidden md:flex items-center gap-8">
+      {
+        navLinks.map((link) => (
+          <a
+            data-nav-link
+            href={link.href}
+            class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href="#contacto"
+        class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 btn-tap transition-all shadow-sm"
+      >
+        Agendar Hora
+      </a>
+      <div
+        class="hidden lg:flex items-center gap-2 pl-4 ml-2 border-l border-outline-variant"
+        title="Convenio Fonasa aceptado"
+      >
+        <img
+          src="/fonasa.jpg"
+          alt="Convenio Fonasa"
+          class="h-8 w-auto"
+          width="120"
+          height="32"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <button
+      data-menu-toggle
+      class="md:hidden text-primary p-2"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+    >
+      <span class="material-symbols-outlined text-3xl">menu</span>
+    </button>
+  </nav>
+
+  <div data-mobile-menu class="mobile-menu md:hidden bg-surface border-t border-outline-variant/30">
+    <div class="flex flex-col gap-4 px-4 py-6">
+      {
+        navLinks.map((link) => (
+          <a href={link.href} class="font-label-md text-label-md text-on-surface-variant">{link.label}</a>
+        ))
+      }
+      <a
+        href="#contacto"
+        class="bg-primary text-on-primary text-center px-6 py-3 rounded-full font-label-md text-label-md"
+      >
+        Agendar Hora
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Active nav link highlighting
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
+  if ('IntersectionObserver' in window && sections.length && navLinks.length) {
+    const linkObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach((link) => {
+              const isActive = link.getAttribute('href') === '#' + id;
+              link.classList.toggle('text-primary', isActive);
+              link.classList.toggle('text-on-surface-variant', !isActive);
+            });
+          }
+        });
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    );
+    sections.forEach((s) => linkObserver.observe(s));
+  }
+</script>

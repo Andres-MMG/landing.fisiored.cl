@@ -1,0 +1,23 @@
+---
+const whatsappUrl = 'https://wa.me/56920092455';
+---
+
+<section class="py-20 md:py-24 relative overflow-hidden">
+  <div class="absolute inset-0 bg-primary-container pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute inset-0 opacity-10 dot-pattern-dark" aria-hidden="true"></div>
+  <div class="px-4 md:px-margin-desktop w-full max-w-container-max mx-auto relative z-10 text-center section-fade">
+    <h2 class="font-headline text-headline-xl text-on-primary-container mb-6">¿Listo para comenzar tu recuperación?</h2>
+    <p class="font-body text-body-lg text-on-primary-container/80 mb-10 max-w-2xl mx-auto">
+      Nuestro equipo de profesionales está listo para acompañarte en cada paso hacia tu bienestar total.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href={whatsappUrl} target="_blank" rel="noopener" class="w-full sm:w-auto bg-surface text-primary px-10 py-5 rounded-2xl font-headline text-headline-sm flex items-center justify-center gap-3 hover:bg-surface-bright btn-tap transition-all shadow-xl">
+        <span class="material-symbols-outlined">chat</span>
+        Agenda por WhatsApp
+      </a>
+      <div class="text-on-primary-container font-label-md text-label-md">
+        O llámanos al <a class="font-bold underline" href="tel:+56920092455">+56 9 2009 2455</a>
+      </div>
+    </div>
+  </div>
+</section>

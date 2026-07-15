@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Equipo Médico - FisioRed Nueva Imperial</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#191c1d",
+                    "on-secondary-container": "#5d6466",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#005143",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#586062",
+                    "tertiary-fixed": "#d4e6e5",
+                    "secondary-container": "#dae1e3",
+                    "surface-variant": "#e1e3e4",
+                    "primary-fixed-dim": "#71d9bf",
+                    "primary-container": "#00846e",
+                    "secondary-fixed": "#dde4e6",
+                    "primary-fixed": "#8ef5db",
+                    "on-surface-variant": "#3e4945",
+                    "on-tertiary-fixed-variant": "#3a4a49",
+                    "on-error-container": "#93000a",
+                    "background": "#f8fafb",
+                    "on-primary-fixed": "#00201a",
+                    "on-secondary-fixed-variant": "#41484a",
+                    "error": "#ba1a1a",
+                    "outline": "#6d7a75",
+                    "inverse-primary": "#71d9bf",
+                    "on-secondary-fixed": "#161d1f",
+                    "surface": "#f8fafb",
+                    "inverse-surface": "#2e3132",
+                    "on-background": "#191c1d",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-container-low": "#f2f4f5",
+                    "surface-bright": "#f8fafb",
+                    "on-tertiary-fixed": "#0e1e1e",
+                    "on-tertiary-container": "#f3fffe",
+                    "surface-tint": "#006b59",
+                    "inverse-on-surface": "#eff1f2",
+                    "outline-variant": "#bdc9c4",
+                    "surface-dim": "#d8dadb",
+                    "tertiary-fixed-dim": "#b8cac9",
+                    "tertiary": "#4f5f5f",
+                    "secondary-fixed-dim": "#c1c8ca",
+                    "surface-container": "#eceeef",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#f4fffa",
+                    "primary": "#006857",
+                    "tertiary-container": "#677877",
+                    "surface-container-high": "#e6e8e9",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "16px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "headline-sm": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .dot-pattern {
+            background-image: radial-gradient(circle, #bdc9c4 1.5px, transparent 1.5px);
+            background-size: 16px 16px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 104, 87, 0.08);
+        }
+        .profile-hover:hover .profile-img {
+            transform: scale(1.05);
+        }
+        .profile-img {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md">
+<!-- TopNavBar -->
+<header class="bg-surface shadow-sm sticky top-0 z-50">
+<nav class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-3">
+<div class="bg-primary text-white p-2 rounded-lg">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary">FISIORED</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Servicios</a>
+<a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary" href="#">Equipo</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Nosotros</a>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 transition-all">
+                    Agendar Hora
+                </button>
+</div>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+</header>
+<main class="relative overflow-hidden">
+<!-- Background Elements -->
+<div class="absolute top-0 right-0 w-1/3 h-screen dot-pattern opacity-10 pointer-events-none -z-10"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-tertiary-fixed rounded-full blur-[120px] opacity-30 pointer-events-none -z-10"></div>
+<!-- Hero Section -->
+<section class="pt-16 pb-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
+<div class="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full mb-6">
+<span class="material-symbols-outlined text-[18px]">groups</span>
+<span class="font-label-md text-label-md">EQUIPO PROFESIONAL</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6 max-w-3xl mx-auto">
+                Especialistas dedicados a tu <span class="text-primary italic">bienestar integral</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-12">
+                Contamos con un equipo multidisciplinario de profesionales altamente calificados en medicina, rehabilitación y estimulación temprana.
+            </p>
+</section>
+<!-- Team Bento Grid -->
+<section class="pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+<!-- Professional 1 -->
+<div class="profile-hover flex flex-col glass-card rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="h-64 overflow-hidden relative bg-surface-container-high">
+<img class="profile-img w-full h-full object-cover" data-alt="A professional headshot of Giovanni Tassistro, a male kinesiologist with a friendly and trustworthy expression, wearing a clean medical scrub. The setting is a bright, modern clinic with soft teal accents, highlighting a professional and clinical atmosphere. High-end lighting, minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjfkI-oAnPAu8Ldoe4f3ZVb7d3kjwa9zjIhKDFjLxMLxja3Dj8fitYQosMIjQoxMWNob5NhUKnLVIrCgGnNh4B3bN62OKtGD3mNhzIfVSxUbddXpTfURvcNyMN2zIN-Tgjxg98xyJCjEdSkVcUeb6sciy7zGO9lOAYL6noxG1EfB427kUkQgzLzbpV4nQO8Zhrpz01SQf5H5RQMWk__qAGjXEtR65_akDPL_6xA6uNKycBGlDVTxAD5As6-PhZDUsRdAWte0O1JRA"/>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary text-white px-3 py-1 rounded-full text-[12px] font-semibold uppercase tracking-wider">Kinesiólogo</span>
+</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Giovanni Tassistro</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Especialista en Rehabilitación Física</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-low text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-white transition-all">Ver Perfil</button>
+</div>
+</div>
+</div>
+<!-- Professional 2 -->
+<div class="profile-hover flex flex-col glass-card rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="h-64 overflow-hidden relative bg-surface-container-high">
+<img class="profile-img w-full h-full object-cover" data-alt="Portrait of Maria José Bon, a professional female kinesiologist. She has a warm, welcoming smile and is dressed in a professional mint-green clinical uniform. The background shows a soft-focus pediatric therapy room with bright, natural lighting, conveying care and safety. Modern medical aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNvV_zI87JMmjK9oy3cmCPjUgu0VWXtKXc28B863An_3Flhn-W7sX9EVs05y12aQsbc2vEI5AJDIplGz6x-ZsnJuABOdH6t4QqHe-OTlQ-sRsciY9kl8_e1EMrnKFavaRWR2axQxkyQWdXSmLd5iwbbT21QVo-owMm129PZomSmlDsXizjCr1dXPtWBXTGZ8toLF054-zJQ-C2o20Bb82jd54kQZbDV5iOfySpBKEEJjhU7YBhaSAMS14wm-gIRU9T15TcWwLVLa8"/>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary text-white px-3 py-1 rounded-full text-[12px] font-semibold uppercase tracking-wider">Kinesióloga</span>
+</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Maria José Bon</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Kinesiología Respiratoria y Motora</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-low text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-white transition-all">Ver Perfil</button>
+</div>
+</div>
+</div>
+<!-- Professional 3 - Featured Large Card style (Asymmetric) -->
+<div class="profile-hover flex flex-col lg:col-span-2 glass-card rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl md:flex-row">
+<div class="md:w-1/2 h-64 md:h-full overflow-hidden relative bg-surface-container-high">
+<img class="profile-img w-full h-full object-cover" data-alt="Professional studio portrait of Dra. Maria Castillo, a pediatrician with a kind and reassuring demeanor. She is wearing a white medical coat over professional attire. The environment is a brightly lit, sterile yet welcoming clinic room. Soft teal and white color palette, professional clinical lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIvvoYYV5hy1e3fEI7kFXiMTze2aCD1_F8vpBEl-9hrEygNoRYt4ElBML1GVmZjIiGDj0zj6toYEOjOs2vyDfeLc90l_eUWAlzuXJ1AEvd3N6nT5U15Np_7JclOmYrYzmgb9OUYYA0QMIeffRx_7e2zzhjgHMswj1lzkatQERMHaiIJvR340fgix0N9wcS3S-FGAR4c1W-bpEmGVivDDi2620DkKjPzvxbHCAOtGPT295WdgiLoIzADz0AI2qDiAops6sS_VBAdbw"/>
+<div class="absolute top-4 left-4">
+<span class="bg-tertiary text-white px-3 py-1 rounded-full text-[12px] font-semibold uppercase tracking-wider">Médico Pediatra</span>
+</div>
+</div>
+<div class="md:w-1/2 p-8 flex flex-col justify-center">
+<div class="mb-4 text-primary">
+<span class="material-symbols-outlined scale-150">child_care</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Dra. Maria Castillo</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">Atención integral para el desarrollo y bienestar de tu hijo o hija.</p>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-label-md">Control Niño Sano</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-label-md">Patologías Agudas</span>
+</div>
+</div>
+<button class="bg-primary text-white py-3 px-8 rounded-full font-label-md text-label-md self-start hover:shadow-lg transition-all">Agendar Consulta</button>
+</div>
+</div>
+<!-- Professional 4 -->
+<div class="profile-hover flex flex-col glass-card rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="h-64 overflow-hidden relative bg-surface-container-high">
+<img class="profile-img w-full h-full object-cover" data-alt="Portrait of David Carrasco, a professional male kinesiologist. Clean-cut look, wearing professional dark teal scrubs. Background is a minimalist rehabilitation gym with modern equipment and plenty of daylight. Soft professional shadows, clinical aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWDmcKP-uwSwQCBMIXgPwZi9V9d6iyOgPsptJzYLGXQuhLRkx5-fh84svNy60SF7rV_-jWoCI3FStK7dCGUsAsrbuxlVI3tUMM5ooD4AfhDrmr7iPxd79D-HgANUtEVb0NbDqDhAdhrWKTQnufaTr1uV18BURQE8lZ3Jc90KY_FcQRdtFjgcWze6g-ADSTFJgX-lEnjBd3Oeb-P6T4mcPwz4gzk5-lSJJdAEeMtwgLXlzYVIG8MqG4LvRavLjxKMJSDyLMt3ELu7o"/>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary text-white px-3 py-1 rounded-full text-[12px] font-semibold uppercase tracking-wider">Kinesiólogo</span>
+</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">David Carrasco</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Rehabilitación Traumatológica</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-low text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-white transition-all">Ver Perfil</button>
+</div>
+</div>
+</div>
+<!-- Professional 5 -->
+<div class="profile-hover flex flex-col glass-card rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="h-64 overflow-hidden relative bg-surface-container-high">
+<img class="profile-img w-full h-full object-cover" data-alt="Headshot of Jonathan Nahuel, a male kinesiologist with a focused and professional expression. He is wearing a professional medical uniform. The scene is a clean, modern physiotherapy studio with soft teal lighting accents. Professional photography style, bright and airy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr0DQDU10uo3g49QCjHRXdyS4RaTWBWmmlSp-sFDMOM-sYNdHK-pDQHJhGARGXOs4jIesdWmOMqCBD0GA00kP9ABQw-8w63M8RRUTVzWdOMyXnu665JLPIrn3572vQpQpb9M_GVfokkjNrUF_MUqx4N_Aa1hkhbwkzmDRVHMQthucUPmcL_HRhepHQGJvoIdBn9luGPdvL9XKIkr8Lp6a0LJxIioLrSk6S2_c96tuzanfchuo27z7QQ0JJ4bk50p5juVpVXa6oeUg"/>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary text-white px-3 py-1 rounded-full text-[12px] font-semibold uppercase tracking-wider">Kinesiólogo</span>
+</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Jonathan Nahuel</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Especialista en Kinesiterapia</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-low text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-white transition-all">Ver Perfil</button>
+</div>
+</div>
+</div>
+<!-- Professional 6 -->
+<div class="profile-hover flex flex-col glass-card rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="h-64 overflow-hidden relative bg-surface-container-high">
+<img class="profile-img w-full h-full object-cover" data-alt="Portrait of Yasna Borquez, a professional female fonoaudiologist. She is smiling warmly and wearing professional clinical attire. Background is a brightly colored but orderly therapy room for children. Soft teal and pastel colors, high-key lighting, modern clinical style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5T3jEbkavHvrhoKDClW5UII-YU9gefqCQ1oOjFXk5uEXj9Lp4iivahW1k4U8L-kQftVVVa59FUizu_MSDCTUfifBQInuoHIQblJqfwmAoWtWQb-xy-71Un5_WNNPXpokcYmE1cREWGLdIu7Bz8A4OAKF1s7ONzqmAHNjnCjL3nDE7h6fsXFzAmYTsm9ntPHlOTVBtf0pLxOzhyIX-6KK7xl4LXZVsAbXfn2Yj2TPLslDhAe2FWrP6fNULywxH4AZNaOTK4WFNANk"/>
+<div class="absolute bottom-4 left-4">
+<span class="bg-secondary text-white px-3 py-1 rounded-full text-[12px] font-semibold uppercase tracking-wider">Fonoaudióloga</span>
+</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Yasna Borquez</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Terapia del Lenguaje y Audición</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-low text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-white transition-all">Ver Perfil</button>
+</div>
+</div>
+</div>
+<!-- Professional 7 -->
+<div class="profile-hover flex flex-col glass-card rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="h-64 overflow-hidden relative bg-surface-container-high">
+<img class="profile-img w-full h-full object-cover" data-alt="Portrait of Carolina Espinoza, a professional female nutritionist. She looks approachable and professional, wearing clinical attire. She is in a minimalist medical consultation room with healthy lifestyle accents in the background. Bright lighting, clean and professional look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWssGpf7kWuxZr-YCfIM7p3LsSmyHJY-AZYsPP0hF6AYcHsngia7mriC3UyClAKHXa2PZ7dLjVytfpCKrzR1AJdS5LncRkSLY_sPeRC6uMzNHG-qBPsLoCE29pNAdIarB5LY7FDm-_gLYpX1SaiULK6hot_wMwrRvgKLlMvyCftcCGLWztGSuwRH_it3xmHK-9fB1PhJpIpW04hyc5iWZhkGXwiTrfW5Bw8Xs4R2gCqBa5XJwoAjkaAJULvaIQLzLVVES7tAtR9oo"/>
+<div class="absolute bottom-4 left-4">
+<span class="bg-secondary text-white px-3 py-1 rounded-full text-[12px] font-semibold uppercase tracking-wider">Nutricionista</span>
+</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Carolina Espinoza</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Nutrición Clínica y Deportiva</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-low text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-white transition-all">Ver Perfil</button>
+</div>
+</div>
+</div>
+<!-- Professional 8 -->
+<div class="profile-hover flex flex-col glass-card rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="h-64 overflow-hidden relative bg-surface-container-high">
+<img class="profile-img w-full h-full object-cover" data-alt="Headshot of Katherinne Paillaqueo, a female occupational therapist. Friendly smile, clinical uniform. The background shows a specialized sensory integration room with soft lighting. Modern, safe, and professional clinical environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnjzqEemR7qt43r2t8quBRGR3vZ7VhVwON-CtsnicqSm1DhVmWHE28Z1OL_t4TSychC98wmEeQI5_YL8gbQ26VwY3B3G5LpPyiTeRbmUj02m1en4Bi40sV5UrxpYSJHR272mAwiD7S0UAg7iCa9IkCoOKfrdjYmDkKYM2He5YSfLOoRldM3WzJeUnLtLlmPnf5dgkEoQ3f0mGty-iSqiT7Ce4BZUhWdnwP3uuYBEK8Iz5edFDH8TyoRBObIR_rHtd49XwfX-GAKco"/>
+<div class="absolute bottom-4 left-4">
+<span class="bg-tertiary-container text-white px-3 py-1 rounded-full text-[12px] font-semibold uppercase tracking-wider">Terapeuta Ocupacional</span>
+</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Katherinne Paillaqueo</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Terapia Ocupacional Infantil</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-low text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-white transition-all">Ver Perfil</button>
+</div>
+</div>
+</div>
+<!-- Professional 9 -->
+<div class="profile-hover flex flex-col glass-card rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="h-64 overflow-hidden relative bg-surface-container-high">
+<img class="profile-img w-full h-full object-cover" data-alt="Portrait of Elizabeth Gallardo, a female occupational therapist. Professional and warm expression, clinical attire. Background is a modern, light-filled clinic space with rehabilitation tools. Calm and professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1xjoXfA27gf3RoJwfvbDVZXVVMlsY7SabT98ZSdRk_V4LEzq9jzLDx6LyVJtM3Joj8bmIcJ-SkZiReT9pStz5jJ0MmuLjXRRgtaurDy-AWEv97obckeiRAikN0FsiafPkJD5X6XbnkBYicJZH7U1QUn4MwDd4AKQ0ZJg4I4q0wX9hiEyJNiD1lHneQQ3dqIWSsfRt9rT92vW9pX4LiPHpa-7c56bXQjcX8-OakCXM8VmcVXCn113F3Xg04R4k5etDckB9lrOBMrk"/>
+<div class="absolute bottom-4 left-4">
+<span class="bg-tertiary-container text-white px-3 py-1 rounded-full text-[12px] font-semibold uppercase tracking-wider">Terapeuta Ocupacional</span>
+</div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Elizabeth Gallardo</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Rehabilitación y Estimulación</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-low text-primary py-2 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-white transition-all">Ver Perfil</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Section -->
+<section class="bg-primary-container text-on-primary-container py-20 px-margin-mobile md:px-margin-desktop overflow-hidden relative">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+<div class="max-w-container-max mx-auto flex flex-col lg:flex-row items-center gap-12 relative z-10">
+<div class="lg:w-1/2">
+<h2 class="font-headline-lg text-headline-lg mb-6">¿Por qué elegir nuestro equipo?</h2>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="bg-white/20 p-3 rounded-xl h-fit">
+<span class="material-symbols-outlined text-[32px]">verified</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm mb-1">Atención Multidisciplinaria</h4>
+<p class="font-body-md text-body-md opacity-90">Evaluamos cada caso desde diferentes perspectivas médicas para un tratamiento integral.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="bg-white/20 p-3 rounded-xl h-fit">
+<span class="material-symbols-outlined text-[32px]">favorite</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm mb-1">Enfoque en el Paciente</h4>
+<p class="font-body-md text-body-md opacity-90">Priorizamos el trato humano y personalizado para asegurar tu comodidad y pronta recuperación.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 bg-white/5 rounded-3xl p-8 backdrop-blur-sm border border-white/10">
+<div class="grid grid-cols-2 gap-8 text-center">
+<div>
+<span class="font-headline-xl text-headline-xl block mb-2">9+</span>
+<span class="font-label-md text-label-md opacity-80 uppercase tracking-widest">Especialistas</span>
+</div>
+<div>
+<span class="font-headline-xl text-headline-xl block mb-2">1000+</span>
+<span class="font-label-md text-label-md opacity-80 uppercase tracking-widest">Pacientes Felices</span>
+</div>
+<div>
+<span class="font-headline-xl text-headline-xl block mb-2">100%</span>
+<span class="font-label-md text-label-md opacity-80 uppercase tracking-widest">Compromiso</span>
+</div>
+<div>
+<span class="font-headline-xl text-headline-xl block mb-2">5/5</span>
+<span class="font-label-md text-label-md opacity-80 uppercase tracking-widest">Calificación</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-secondary-container text-on-secondary-container">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-margin-mobile md:px-margin-desktop py-16 w-full max-w-container-max mx-auto">
+<div class="space-y-6">
+<div class="flex items-center gap-3">
+<div class="bg-primary text-white p-1.5 rounded-md">
+<span class="material-symbols-outlined text-[20px]">health_and_safety</span>
+</div>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">FISIORED</span>
+</div>
+<p class="font-body-md text-body-md">
+                    Centro de Medicina, Rehabilitación y Estimulación. Calidad profesional y calidez humana en cada atención.
+                </p>
+<p class="font-label-md text-label-md">© 2024 Centro FisioRed Nueva Imperial. Tu bienestar, nuestra prioridad.</p>
+</div>
+<div class="space-y-6">
+<h4 class="font-headline-sm text-headline-sm text-primary">Contacto</h4>
+<div class="space-y-4 font-body-md text-body-md">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>Ernesto Riquelme 511, Nueva Imperial</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">phone</span>
+<span>+56 9 2009 2455</span>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="font-headline-sm text-headline-sm text-primary">Redes Sociales</h4>
+<div class="flex gap-4">
+<a class="bg-white p-3 rounded-full text-primary hover:scale-110 transition-transform shadow-sm" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="bg-white p-3 rounded-full text-primary hover:scale-110 transition-transform shadow-sm" href="#">
+<span class="material-symbols-outlined">chat</span>
+</a>
+</div>
+<div class="bg-primary/5 p-4 rounded-xl border border-primary/10">
+<span class="font-label-md text-label-md block mb-2 font-bold text-primary uppercase tracking-wider">Horario de Atención</span>
+<p class="text-label-md">Lun - Vie: 09:00 - 19:00</p>
+<p class="text-label-md">Sáb: 10:00 - 14:00</p>
+</div>
+</div>
+</div>
+</footer>
+<!-- FAB for quick appointment -->
+<button class="fixed bottom-8 right-8 bg-primary text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-[32px]">calendar_month</span>
+</button>
+</body></html>

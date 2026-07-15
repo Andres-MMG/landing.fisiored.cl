@@ -1,0 +1,111 @@
+---
+const socialLinks = [
+  {
+    href: 'https://instagram.com/fisiorednuevaimperial',
+    label: 'Instagram',
+    icon: 'photo_camera',
+  },
+  {
+    href: 'https://wa.me/56920092455',
+    label: 'WhatsApp',
+    icon: 'chat',
+  },
+  {
+    href: 'https://facebook.com',
+    label: 'Facebook',
+    icon: 'share',
+  },
+];
+
+const schedule = [
+  { day: 'Lunes a Viernes', hours: '09:00 - 20:00' },
+  { day: 'Sábado', hours: '09:00 - 14:00' },
+  { day: 'Domingo', hours: 'Cerrado' },
+];
+---
+
+<footer class="bg-secondary-container text-on-secondary-container">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter px-4 md:px-margin-desktop py-12 md:py-16 w-full max-w-container-max mx-auto">
+    <div class="space-y-6">
+      <a href="#inicio">
+        <img
+          src="/logo2.png"
+          alt="FisioRed — Medicina, Rehabilitación y Estimulación"
+          class="h-14 w-auto"
+          width="280"
+          height="112"
+          loading="lazy"
+        />
+      </a>
+      <p class="font-body text-body-md max-w-xs">Tu bienestar, nuestra prioridad. Medicina, rehabilitación y estimulación integral.</p>
+      <div class="flex gap-3">
+        {
+          socialLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener"
+              aria-label={link.label}
+              class="w-10 h-10 rounded-full border border-primary flex items-center justify-center text-primary hover:bg-primary hover:text-white btn-tap transition-all"
+            >
+              <span class="material-symbols-outlined text-[20px]">{link.icon}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      <h4 class="font-label-md text-label-md font-bold uppercase tracking-wider">Contacto</h4>
+      <ul class="space-y-4">
+        <li class="flex items-start gap-3 font-label-md text-label-md">
+          <span class="material-symbols-outlined text-[20px] text-primary mt-0.5">location_on</span>
+          Ernesto Riquelme 511, Nueva Imperial
+        </li>
+        <li class="flex items-center gap-3 font-label-md text-label-md">
+          <span class="material-symbols-outlined text-[20px] text-primary">call</span>
+          <a href="tel:+56920092455" class="hover:underline">+56 9 2009 2455</a>
+        </li>
+        <li class="flex items-center gap-3 font-label-md text-label-md">
+          <span class="material-symbols-outlined text-[20px] text-primary">mail</span>
+          <a href="mailto:contacto@fisiored.cl" class="hover:underline">contacto@fisiored.cl</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="space-y-6">
+      <h4 class="font-label-md text-label-md font-bold uppercase tracking-wider">Horario</h4>
+      <ul class="space-y-2 font-label-md text-label-md">
+        {schedule.map((item) => (
+          <li class="flex justify-between">
+            <span>{item.day}</span>
+            <span>{item.hours}</span>
+          </li>
+        ))}
+        <li class="pt-2 font-bold text-primary">Atención previa cita</li>
+      </ul>
+    </div>
+
+    <div class="space-y-6">
+      <h4 class="font-label-md text-label-md font-bold uppercase tracking-wider">Convenios</h4>
+      <div class="bg-white p-4 rounded-2xl shadow-sm flex items-center gap-3 soft-shadow-sm">
+        <img
+          src="/fonasa.jpg"
+          alt="Logo Fonasa — convenio aceptado"
+          class="h-16 w-auto"
+          width="200"
+          height="64"
+          loading="lazy"
+        />
+      </div>
+      <p class="font-label-md text-label-md">Aceptamos Fonasa y principales isapres. Consulta por tu plan.</p>
+    </div>
+  </div>
+
+  <div class="border-t border-outline-variant/40">
+    <div class="max-w-container-max mx-auto px-4 md:px-margin-desktop py-6 flex flex-col md:flex-row items-center justify-between gap-2 font-label-md text-label-md">
+      <span>© 2024 Centro FisioRed Nueva Imperial. Todos los derechos reservados.</span>
+      <span class="opacity-70">Tu bienestar, nuestra prioridad.</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,22 @@
+---
+const stats = [
+  { value: '9+', label: 'Especialistas' },
+  { value: '5.000+', label: 'Pacientes Felices' },
+  { value: '10', label: 'Años de Experiencia' },
+  { value: '5/5', label: 'Calificación' },
+];
+---
+
+<section class="bg-primary-container text-on-primary-container py-16 md:py-20 px-4 md:px-margin-desktop overflow-hidden relative">
+  <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" aria-hidden="true"></div>
+  <div class="max-w-container-max mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 text-center relative z-10 section-fade">
+    {
+      stats.map((stat) => (
+        <div>
+          <span class="font-headline text-headline-xl block mb-2">{stat.value}</span>
+          <span class="font-label-md text-label-md opacity-80 uppercase tracking-widest">{stat.label}</span>
+        </div>
+      ))
+    }
+  </div>
+</section>

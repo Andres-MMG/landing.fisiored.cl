@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Servicios | FISIORED Nueva Imperial</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#191c1d",
+                        "on-secondary-container": "#5d6466",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#005143",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#586062",
+                        "tertiary-fixed": "#d4e6e5",
+                        "secondary-container": "#dae1e3",
+                        "surface-variant": "#e1e3e4",
+                        "primary-fixed-dim": "#71d9bf",
+                        "primary-container": "#00846e",
+                        "secondary-fixed": "#dde4e6",
+                        "primary-fixed": "#8ef5db",
+                        "on-surface-variant": "#3e4945",
+                        "on-tertiary-fixed-variant": "#3a4a49",
+                        "on-error-container": "#93000a",
+                        "background": "#f8fafb",
+                        "on-primary-fixed": "#00201a",
+                        "on-secondary-fixed-variant": "#41484a",
+                        "error": "#ba1a1a",
+                        "outline": "#6d7a75",
+                        "inverse-primary": "#71d9bf",
+                        "on-secondary-fixed": "#161d1f",
+                        "surface": "#f8fafb",
+                        "inverse-surface": "#2e3132",
+                        "on-background": "#191c1d",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-low": "#f2f4f5",
+                        "surface-bright": "#f8fafb",
+                        "on-tertiary-fixed": "#0e1e1e",
+                        "on-tertiary-container": "#f3fffe",
+                        "surface-tint": "#006b59",
+                        "inverse-on-surface": "#eff1f2",
+                        "outline-variant": "#bdc9c4",
+                        "surface-dim": "#d8dadb",
+                        "tertiary-fixed-dim": "#b8cac9",
+                        "tertiary": "#4f5f5f",
+                        "secondary-fixed-dim": "#c1c8ca",
+                        "surface-container": "#eceeef",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#f4fffa",
+                        "primary": "#006857",
+                        "tertiary-container": "#677877",
+                        "surface-container-high": "#e6e8e9",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Montserrat"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .soft-shadow {
+            box-shadow: 0 10px 40px -10px rgba(0, 104, 87, 0.08);
+        }
+        .dot-pattern {
+            background-image: radial-gradient(circle, #006857 1px, transparent 1px);
+            background-size: 16px 16px;
+            opacity: 0.05;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 104, 87, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-inverse-surface shadow-sm h-20">
+<div class="flex justify-between items-center px-margin-desktop h-full w-full max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">
+                FISIORED
+            </div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary font-label-md text-label-md transition-all" href="#">Servicios</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="#">Equipo</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md" href="#">Nosotros</a>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">
+                    Agendar Hora
+                </button>
+</nav>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</div>
+</header>
+<main class="pt-32 pb-24">
+<!-- Hero Section -->
+<section class="relative px-margin-desktop mb-20 max-w-container-max mx-auto overflow-hidden">
+<div class="absolute top-0 right-0 w-1/3 h-full dot-pattern pointer-events-none"></div>
+<div class="relative z-10 max-w-3xl">
+<span class="inline-block bg-tertiary-fixed text-on-tertiary-fixed px-4 py-1.5 rounded-full font-label-md text-label-md mb-6">
+                    Especialidades Clínicas
+                </span>
+<h1 class="font-headline-xl text-headline-xl text-primary mb-6">Nuestros Servicios de Rehabilitación y Bienestar</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-2xl">
+                    Ofrecemos un enfoque integral y personalizado para cada paciente, desde pediatría hasta rehabilitación física avanzada, respaldado por un equipo de profesionales comprometidos con tu salud.
+                </p>
+</div>
+</section>
+<!-- Services Bento Grid -->
+<section class="px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Kinesiología - Main Feature -->
+<div class="md:col-span-8 group relative overflow-hidden bg-white rounded-xl p-8 soft-shadow border border-surface-variant transition-all hover:-translate-y-1">
+<div class="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-9xl text-primary">exercise</span>
+</div>
+<div class="relative z-10 flex flex-col h-full">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">exercise</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Kinesiología y Rehabilitación</h2>
+</div>
+<p class="text-on-surface-variant mb-8 max-w-lg">
+                            Recuperación funcional integral para lesiones traumatológicas, deportivas y post-operatorias. Utilizamos técnicas avanzadas de terapia manual y ejercicios terapéuticos personalizados para restaurar tu movilidad.
+                        </p>
+<div class="mt-auto flex items-center justify-between">
+<ul class="flex flex-wrap gap-2">
+<li class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-xs font-semibold">Terapia Manual</li>
+<li class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-xs font-semibold">Fisioterapia</li>
+<li class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-xs font-semibold">Readaptación</li>
+</ul>
+<button class="bg-primary text-white flex items-center gap-2 px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all">
+                                Consultar <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Pediatría - Focus Card -->
+<div class="md:col-span-4 group bg-primary text-white rounded-xl p-8 soft-shadow relative overflow-hidden transition-all hover:-translate-y-1">
+<div class="absolute bottom-0 right-0 w-32 h-32 opacity-20 transform translate-x-8 translate-y-8">
+<span class="material-symbols-outlined text-9xl" style="font-variation-settings: 'FILL' 1;">child_care</span>
+</div>
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl">child_care</span>
+</div>
+<h2 class="font-headline-md text-headline-md mb-4">Pediatría Integral</h2>
+<p class="text-white/80 mb-8">
+                            Atención especializada para el desarrollo y bienestar de tu hijo o hija, liderada por la Dra. Maria Castillo. Estimulación temprana y control del niño sano.
+                        </p>
+<button class="w-full bg-white text-primary px-6 py-3 rounded-full font-label-md hover:bg-opacity-90 transition-all">
+                            Ver Disponibilidad
+                        </button>
+</div>
+</div>
+<!-- Terapia Ocupacional -->
+<div class="md:col-span-4 group bg-white rounded-xl p-8 soft-shadow border border-surface-variant transition-all hover:-translate-y-1">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary mb-6">
+<span class="material-symbols-outlined text-3xl">accessibility_new</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Terapia Ocupacional</h3>
+<p class="text-on-surface-variant mb-6 text-sm">
+                        Ayudamos a personas de todas las edades a participar en las actividades que desean y necesitan mediante el uso terapéutico de las actividades diarias.
+                    </p>
+<button class="text-primary font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Más información <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+<!-- Fonoaudiología -->
+<div class="md:col-span-4 group bg-white rounded-xl p-8 soft-shadow border border-surface-variant transition-all hover:-translate-y-1">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-3xl">record_voice_over</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Fonoaudiología</h3>
+<p class="text-on-surface-variant mb-6 text-sm">
+                        Evaluación y tratamiento de trastornos de la comunicación, lenguaje, voz y audición, tanto en niños como en adultos.
+                    </p>
+<button class="text-primary font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Consultar <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+<!-- Nutrición -->
+<div class="md:col-span-4 group bg-white rounded-xl p-8 soft-shadow border border-surface-variant transition-all hover:-translate-y-1">
+<div class="w-12 h-12 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container mb-6">
+<span class="material-symbols-outlined text-3xl">nutrition</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Nutrición</h3>
+<p class="text-on-surface-variant mb-6 text-sm">
+                        Planes de alimentación personalizados para mejorar tu salud, rendimiento deportivo o manejo de patologías metabólicas.
+                    </p>
+<button class="text-primary font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Consultar <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+<!-- Psicología - Horizontal Full -->
+<div class="md:col-span-12 group bg-surface-container-low rounded-xl p-8 soft-shadow border border-surface-variant transition-all hover:bg-white flex flex-col md:flex-row items-center gap-8">
+<div class="flex-1">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Psicología &amp; Bienestar Mental</h3>
+</div>
+<p class="text-on-surface-variant max-w-2xl">
+                            Espacio de contención y apoyo emocional. Brindamos psicoterapia para adolescentes y adultos, enfocándonos en herramientas para la gestión de la ansiedad, estrés y procesos de vida.
+                        </p>
+</div>
+<div class="flex gap-4">
+<button class="border-2 border-primary text-primary px-8 py-3 rounded-full font-label-md hover:bg-primary hover:text-white transition-all">
+                            Conocer Especialistas
+                        </button>
+<button class="bg-primary text-white px-8 py-3 rounded-full font-label-md hover:opacity-90 transition-all">
+                            Agendar Hora
+                        </button>
+</div>
+</div>
+<!-- Osteopatía & Masoterapia -->
+<div class="md:col-span-6 group bg-white rounded-xl p-8 soft-shadow border border-surface-variant transition-all hover:-translate-y-1">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-4xl text-primary">personal_injury</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Osteopatía</h3>
+</div>
+<p class="text-on-surface-variant mb-6">
+                        Tratamiento manual que busca equilibrar el sistema musculoesquelético para optimizar el funcionamiento global del cuerpo.
+                    </p>
+<button class="bg-tertiary-fixed text-on-tertiary-fixed px-6 py-2.5 rounded-full font-label-md hover:opacity-90 transition-all">
+                        Consultar Servicio
+                    </button>
+</div>
+<div class="md:col-span-6 group bg-white rounded-xl p-8 soft-shadow border border-surface-variant transition-all hover:-translate-y-1">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-4xl text-primary">spa</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Masoterapia</h3>
+</div>
+<p class="text-on-surface-variant mb-6">
+                        Masajes de relajación y descontracturantes diseñados para reducir la tensión muscular y promover un estado profundo de bienestar.
+                    </p>
+<button class="bg-tertiary-fixed text-on-tertiary-fixed px-6 py-2.5 rounded-full font-label-md hover:opacity-90 transition-all">
+                        Consultar Servicio
+                    </button>
+</div>
+</div>
+</section>
+<!-- CTAs Section -->
+<section class="mt-24 px-margin-desktop max-w-container-max mx-auto text-center">
+<div class="bg-primary-container text-on-primary-container rounded-3xl p-12 relative overflow-hidden">
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<h2 class="font-headline-lg text-headline-lg mb-4">¿No encuentras lo que buscas?</h2>
+<p class="font-body-lg text-body-lg mb-10 opacity-90 max-w-2xl mx-auto">
+                        Nuestro equipo está en constante crecimiento. Contáctanos directamente por WhatsApp para consultas específicas sobre convenios y nuevas especialidades.
+                    </p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<a class="bg-white text-primary-container px-10 py-4 rounded-full font-bold flex items-center justify-center gap-2 hover:scale-105 transition-transform" href="https://wa.me/56920092455">
+<span class="material-symbols-outlined">chat</span>
+                            Hablar con Admisión
+                        </a>
+<a class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold hover:bg-white/10 transition-all" href="tel:+56920092455">
+                            Llamar Ahora
+                        </a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-margin-desktop py-12 w-full max-w-container-max mx-auto">
+<div class="flex flex-col gap-4">
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">
+                    FISIORED
+                </div>
+<p class="font-body-md text-body-md opacity-80">
+                    Centro especializado en medicina, rehabilitación y estimulación. Tu bienestar es nuestra prioridad fundamental.
+                </p>
+<div class="mt-4 flex gap-4">
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">face_nod</span></a>
+<a class="hover:text-primary transition-colors font-label-md text-label-md" href="https://www.instagram.com/fisiorednuevaimperial">Instagram</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-md text-label-md font-bold uppercase tracking-wider">Ubicación</h4>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<p class="font-body-md text-body-md">Ernesto Riquelme 511, Nueva Imperial</p>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-primary">schedule</span>
+<p class="font-body-md text-body-md">Lunes a Sábado: 09:00 - 19:00 hrs</p>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-md text-label-md font-bold uppercase tracking-wider">Contacto</h4>
+<a class="flex items-center gap-2 hover:underline transition-all" href="tel:+56920092455">
+<span class="material-symbols-outlined text-primary">call</span>
+                    +56 9 20092455
+                </a>
+<a class="flex items-center gap-2 hover:underline transition-all" href="https://wa.me/56920092455">
+<span class="material-symbols-outlined text-primary">chat</span>
+                    WhatsApp Directo
+                </a>
+</div>
+</div>
+<div class="px-margin-desktop py-6 border-t border-black/10 text-center text-xs opacity-60">
+            © 2024 Centro FisioRed Nueva Imperial. Tu bienestar, nuestra prioridad.
+        </div>
+</footer>
+<!-- FAB for WhatsApp -->
+<a class="fixed bottom-8 right-8 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all z-[60]" href="https://wa.me/56920092455">
+<svg fill="currentColor" height="28" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.171c1.589.945 3.554 1.462 5.541 1.463 5.344 0 9.691-4.346 9.693-9.691 0-2.59-.101-5.019-1.933-6.852s-4.262-1.931-6.852-1.931c-5.345 0-9.692 4.347-9.695 9.693-.001 2.159.569 4.254 1.649 6.08l-.969 3.541 3.659-.96zm12.524-7.087c-.069-.115-.253-.184-.53-.322-.276-.138-1.633-.806-1.886-.897-.253-.092-.437-.138-.621.138-.184.276-.713.897-.874 1.081-.161.184-.322.207-.598.069-.276-.138-1.169-.431-2.227-1.374-.824-.735-1.38-1.642-1.541-1.918-.161-.276-.017-.426.121-.563.124-.123.276-.322.414-.483.138-.161.184-.276.276-.46.092-.184.046-.345-.023-.483-.069-.138-.621-1.496-.851-2.048-.224-.543-.471-.468-.644-.476l-.552-.012c-.184 0-.483.069-.736.345-.253.276-.966.943-.966 2.3 0 1.357.989 2.668 1.127 2.852.138.184 1.944 2.969 4.709 4.159.658.283 1.171.452 1.57.579.661.21 1.262.181 1.737.11.53-.081 1.633-.667 1.863-1.311.23-.644.23-1.196.161-1.311z"></path></svg>
+</a>
+<script>
+        // Simple entrance animation for cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.soft-shadow').forEach(card => {
+                card.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                observer.observe(card);
+            });
+        });
+    </script>
+</body></html>

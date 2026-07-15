@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FISIORED - Centro de Rehabilitación y Medicina</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#191c1d",
+                        "on-secondary-container": "#5d6466",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#005143",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#586062",
+                        "tertiary-fixed": "#d4e6e5",
+                        "secondary-container": "#dae1e3",
+                        "surface-variant": "#e1e3e4",
+                        "primary-fixed-dim": "#71d9bf",
+                        "primary-container": "#00846e",
+                        "secondary-fixed": "#dde4e6",
+                        "primary-fixed": "#8ef5db",
+                        "on-surface-variant": "#3e4945",
+                        "on-tertiary-fixed-variant": "#3a4a49",
+                        "on-error-container": "#93000a",
+                        "background": "#f8fafb",
+                        "on-primary-fixed": "#00201a",
+                        "on-secondary-fixed-variant": "#41484a",
+                        "error": "#ba1a1a",
+                        "outline": "#6d7a75",
+                        "inverse-primary": "#71d9bf",
+                        "on-secondary-fixed": "#161d1f",
+                        "surface": "#f8fafb",
+                        "inverse-surface": "#2e3132",
+                        "on-background": "#191c1d",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-low": "#f2f4f5",
+                        "surface-bright": "#f8fafb",
+                        "on-tertiary-fixed": "#0e1e1e",
+                        "on-tertiary-container": "#f3fffe",
+                        "surface-tint": "#006b59",
+                        "inverse-on-surface": "#eff1f2",
+                        "outline-variant": "#bdc9c4",
+                        "surface-dim": "#d8dadb",
+                        "tertiary-fixed-dim": "#b8cac9",
+                        "tertiary": "#4f5f5f",
+                        "secondary-fixed-dim": "#c1c8ca",
+                        "surface-container": "#eceeef",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#f4fffa",
+                        "primary": "#006857",
+                        "tertiary-container": "#677877",
+                        "surface-container-high": "#e6e8e9",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Montserrat"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .dot-pattern {
+            background-image: radial-gradient(circle, #bdc9c4 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .soft-shadow {
+            box-shadow: 0 20px 40px rgba(0, 104, 87, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-surface shadow-sm h-20">
+<div class="flex justify-between items-center px-4 md:px-margin-desktop h-full w-full max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">FISIORED</div>
+<!-- Desktop Nav -->
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary font-label-md text-label-md transition-all" href="#">Servicios</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Equipo</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Nosotros</a>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md text-label-md hover:bg-primary-container transition-all scale-100 active:scale-95">
+                    Agendar Hora
+                </button>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[870px] flex items-center overflow-hidden bg-surface">
+<!-- Decorative Elements -->
+<div class="absolute top-20 right-0 w-1/3 h-full dot-pattern opacity-20 pointer-events-none"></div>
+<div class="absolute -bottom-20 -left-20 w-64 h-64 bg-primary-fixed opacity-10 rounded-full blur-3xl"></div>
+<div class="px-4 md:px-margin-desktop w-full max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+<div class="space-y-8">
+<div class="inline-flex items-center gap-2 bg-primary-fixed/30 text-primary px-4 py-2 rounded-full font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                        Más de 10 años de experiencia
+                    </div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface max-w-xl">
+                        Tu bienestar, nuestra <span class="text-primary">prioridad.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg leading-relaxed">
+                        El primer centro médico y de rehabilitación integral en Nueva Imperial. Ofrecemos atención especializada para el desarrollo y salud de toda tu familia.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-headline-sm text-headline-sm hover:shadow-lg transition-all flex items-center justify-center gap-3 active:scale-95">
+<span class="material-symbols-outlined">calendar_today</span>
+                            Agendar Hora
+                        </button>
+<button class="bg-tertiary-fixed text-primary px-8 py-4 rounded-xl font-headline-sm text-headline-sm hover:bg-tertiary-fixed-dim transition-all flex items-center justify-center gap-3">
+                            Ver Servicios
+                        </button>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-[4/5] rounded-[32px] overflow-hidden soft-shadow border-4 border-white">
+<img class="w-full h-full object-cover" data-alt="A professional medical environment featuring a bright, modern clinic with soft teal accents. A male kinesiologist in a teal scrub is seen focused on a therapeutic treatment, providing professional and compassionate care. The scene is illuminated with soft, natural morning light, creating a clean, welcoming, and serene healthcare atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX7v2bbfLagWvVMCroCpeJnkh4M30Hxn8ZXl-gQCov-Pe16Ot2jFrVXzQZl1tNxBT7AMTOfFpM07aF6PURb_zBdnnhvpxtrZHyPvg2hgc1FqDMl6sDaU1qArxGLKZNBreFNfclYkW9Mheq35qsi0l7x9VbghBhH0tKdsCXetkDDQ5mpPoYBHqCWt6qRow7AWhPaUCBA8Wt1w0SmemfwaLCtgHMg7GVlG3ZZwKxQeAaRQCA9T-kkl4otCOLhmM5jlvdlNedDq5xsiU"/>
+</div>
+<!-- Floating Stat Card -->
+<div class="absolute -bottom-6 -left-6 glass-card p-6 rounded-2xl soft-shadow border border-outline-variant max-w-[200px]">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="font-headline-sm text-headline-sm">+5k</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Pacientes atendidos con éxito</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-24 bg-surface-container-low relative">
+<div class="px-4 md:px-margin-desktop w-full max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">¿Por qué elegirnos?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Combinamos tecnología de vanguardia con un trato humano excepcional para tu rehabilitación.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Feature 1 -->
+<div class="bg-surface p-8 rounded-[24px] border border-outline-variant/30 soft-shadow hover:-translate-y-2 transition-transform duration-300">
+<div class="w-14 h-14 bg-primary-fixed/40 rounded-2xl flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-[32px]">diversity_3</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Equipo Interdisciplinario</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Profesionales de diversas áreas trabajando en conjunto para un diagnóstico y tratamiento integral.</p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface p-8 rounded-[24px] border border-outline-variant/30 soft-shadow hover:-translate-y-2 transition-transform duration-300">
+<div class="w-14 h-14 bg-primary-fixed/40 rounded-2xl flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-[32px]">health_and_safety</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Calidad de Vida</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Nuestro enfoque principal es devolverte la autonomía y mejorar tu bienestar diario de forma sostenible.</p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface p-8 rounded-[24px] border border-outline-variant/30 soft-shadow hover:-translate-y-2 transition-transform duration-300">
+<div class="w-14 h-14 bg-primary-fixed/40 rounded-2xl flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-[32px]">ecg_heart</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Atención Especializada</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Protocolos personalizados adaptados a las necesidades específicas de cada paciente y cada edad.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Preview Section -->
+<section class="py-24 bg-surface">
+<div class="px-4 md:px-margin-desktop w-full max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="max-w-xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Especialidades Médicas</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Contamos con instalaciones modernas para ofrecerte la mejor experiencia en cada sesión.</p>
+</div>
+<a class="text-primary font-bold flex items-center gap-2 hover:underline" href="#">
+                        Ver todos los servicios
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Service 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-[32px] overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close-up of a kinesiologist's hands performing therapeutic massage on a patient's back. The lighting is soft and warm, with teal highlights in the background reflecting a clean medical office style. The mood is restorative and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAInr7H8vZ-ynA2KwVaPJbXDG1aV4fpm1jT0OtBx25gV55lyFa9ybfNEPMyNCRu1tcaGcbQelsrfsHEnQr5FCs9hXbGipVXAs82cKni6fn1TADOc83YZWayeeEUPU2X-58aCgHvj_iT3QcsIslbnFhm7StjMUcBjoa9lm_Yoq2PuMOtPGkRxfkUoc1mU9XGc2LqOYEkcbm2nf5raXBU1pB-he90KXpTHMKI4UvKd4Cr5rUrHEHg1p6cd50AtvzrxLsJhxG8QnBRhFg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">exercise</span>
+<h4 class="font-headline-sm text-headline-sm">Kinesiología</h4>
+</div>
+</div>
+<!-- Service 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-[32px] overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A friendly pediatric consultation scene showing a medical professional smiling at a happy child in a warm, child-friendly room decorated with subtle teal and white educational patterns. The focus is on a stethoscope with a heart shape, evoking a sense of care and pediatric expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8ToY_K_rEtzSr-6az_5xO6kl46DIv38uZFV_jTJqfxi4Acc0vJQM3X_OJClAew8d2HoWDfPzDeJPrAy7te8A6_hmQJchkZoiT2KbjfM00JIK7fb_wAmd0uQ9jf-SVCnvew5X_SFmMFqvxaC2Elf5ivuGCIfsf3c4WbnV-FRkPm75lnMzKIRgJiha8SXzTW9piAKp4KC00r8OXW1Fd3uN2I_Em0mbHrtjBwoWkwFHBz-b7OE5Z1WQS6SjzS2wL-BZukqznQXFfYYA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">child_care</span>
+<h4 class="font-headline-sm text-headline-sm">Pediatría</h4>
+</div>
+</div>
+<!-- Service 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-[32px] overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="An osteopathy treatment demonstration focusing on skeletal alignment and manual therapy. The setting is a minimalist medical cabin with white walls and professional equipment. The light is diffused, highlighting the clinical precision and therapeutic environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGO9QBpEVqb6igF0geiZXDKJIZ5s5iICemLYHoIUkbnah7l1S2gJAGKBbqjECvml2mAGgzMfNoVDGqAX5TEDBfMVTzAuW4O1ybKQR1Gbw5T5Y2rOgXJOaZiGxxXjWMU_uvdlgYVqlHfjyDk1oiURngGk-LQBX2y74bZYZkANLH6i_RSuuXMALZCzL4WWKi3Ve_WdmPKpbLg5rQJ10sHh2UHpmDDpQuykObFk5ajnh-Fx_JQxsCetXlluYheqRVgln4g6qu2NvX7a0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">done</span>
+<h4 class="font-headline-sm text-headline-sm">Osteopatía</h4>
+</div>
+</div>
+<!-- Service 4 -->
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-[32px] overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A detailed shot of essential oils and medical-grade therapy supplies on a clean white surface in a massage therapy room. A background hint of a peaceful patient environment with soft teal textiles creates a relaxing, clinical atmosphere of wellness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX0w08FfU1zZjX0GJF7RR81R_eYIB8CjM4ogw0NKvREudMiNpIlRW_yM_EJDp4HG5Diaoubwl-a5jrmCV2sIdmxv4HNf5__ufuD0XFudKIeJJ4uE9h6Ucu8ZEV0M8dnmhGkQVMaSKDjEZR5G3lWZc9CHNnRnp83A42_E-HcFevKwjhFo9Fy0eoISoQRaQW0zsgHMdUIm1YgtVw7flR1RDuUtf2tFTJ3xLtb4stASagT7DIVfCk-0sfwLVf2VKmfawZxiDl9MmX7AU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">spa</span>
+<h4 class="font-headline-sm text-headline-sm">Masoterapia</h4>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary-container pointer-events-none"></div>
+<div class="absolute inset-0 opacity-10 dot-pattern"></div>
+<div class="px-4 md:px-margin-desktop w-full max-w-container-max mx-auto relative z-10 text-center">
+<h2 class="font-headline-xl text-headline-xl text-on-primary-container mb-6">¿Listo para comenzar tu recuperación?</h2>
+<p class="font-body-lg text-body-lg text-on-primary-container/80 mb-10 max-w-2xl mx-auto">Nuestro equipo de profesionales está listo para acompañarte en cada paso hacia tu bienestar total.</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<button class="w-full sm:w-auto bg-surface text-primary px-10 py-5 rounded-2xl font-headline-sm text-headline-sm flex items-center justify-center gap-3 hover:bg-surface-bright transition-all shadow-xl active:scale-95">
+<span class="material-symbols-outlined">whatshot</span>
+                        Agenda por WhatsApp
+                    </button>
+<div class="text-on-primary-container font-label-md text-label-md">
+                        O llámanos al <a class="font-bold underline" href="tel:+56920092455">+56 9 2009 2455</a>
+</div>
+</div>
+</div>
+</section>
+<!-- About Brief -->
+<section class="py-24 bg-surface">
+<div class="px-4 md:px-margin-desktop w-full max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1 relative">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-4">
+<div class="h-48 rounded-2xl overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist entrance of a modern medical center in Nueva Imperial. The signage displays 'FISIORED' in professional teal lettering. The surrounding architecture is contemporary with large glass windows and tidy landscaping." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkykTDR_-lxH-zlxitro4Lw43jBjcBHBTScfcDob3TgGBFXO-kSKsxAkfVS42moy4KUKy697OLbSDH8mUnQ7pIPIpnIsNtQ6SnhOriY8JYknLsas9yJUOamz8zO-cchZbvPy4E0PdVfpRGrUQO11O72hsv6od7xHM9FSF7oehS6r-OlAuUZcbWiTaukOhyLB0ZFtqrpRr6oluMklcSrNgdWq49jdRmY3lO5KnQ42vuW0Ihj7AD3ZqwWikf_ihPCS26xNxE-xer_9s"/>
+</div>
+<div class="h-64 rounded-2xl overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="An interior waiting area of a clinic designed for comfort and calmness. Ergonomic chairs in neutral tones are arranged neatly, with potted green plants and soft teal wall accents providing a peaceful atmosphere for patients." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBavhY1zu4DO8ehXwxEWOGiMltvALIgddLNBhGnabmTPtKNon3w8hFpNVwAHZeo5wkraeShb0iKbYOy5AJ7W4ZcgOXVJ1aEW9ucIZsI9VgEJklrHEZq2j3RAP9OPdRP2_WJkC6vHSazRwwPFTiTBIceJE9ixED8zUwb2izL1pzgNJ3l8PbNO7QBNuYCBHzDfKVREf3sR9Y8OLy4Tfz3AsdpW06WjaN2-NTBT5rl4lzB6Ci-69nWePsYIspcyvDXyFgUzkDapaEsE74"/>
+</div>
+</div>
+<div class="pt-8 space-y-4">
+<div class="h-64 rounded-2xl overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="A brightly lit rehabilitation gym inside the clinic, featuring modern equipment like therapeutic balls, bars, and mats. The space is organized and airy, emphasizing the professional medical environment of FisioRed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTC7fONscp0Lpypvuip3vE19auEKY_LMGGCcpWdI0FMNBSHZBW-UyRSZHPM9REdtFFuCtvc3v5WFW9T04M-tY7D5AAFf1yM8Rb-vnAS-kexVt4GxoEAXNcNSdIIyySNXO-Aa5M-NOfNjqMJsracvRRyZ0QOsoxJ2nrUBBZ_U4hgkgDghWzCiygbue42HMnfEqh1uEOy0CxBPAZdSZrhHsUwYnVIVpv78HhBYvOLuwhUeQn7Vb_wMAFlciIgtZkCFa4Py51nPtcC38"/>
+</div>
+<div class="h-48 rounded-2xl overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="A team of healthcare professionals in uniform standing together in a bright clinic corridor, conveying trust, teamwork, and readiness to provide high-quality medical services." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWeD22askZs8VMK_RDig2N6-zTm5eHxB7Ukya6a_rvjinPGg2tpXuHCbMfW22veG_YdIl36VsoHR1-WO2Uq2Xq2C2NiJ1GSqt96pw1OFRkkxt_zIujWVS12kpjiShh_1S2btA2KbiKX1IgpucxKHTFcrdd0Y0Ld2rZdgkN19YDrJYIS9OGEE4kKoMxdGxLeIqd1P7yugqi9uIR12c0i_ud8XneZ9YQQK1sflDQYelmkkXISIF5YFUI9cjp2JZKsjDuByVqD-DsVMA"/>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Más que un centro médico, somos parte de tu comunidad</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        FisioRed nace en Nueva Imperial con la misión de descentralizar la salud de alta calidad. Como el primer centro de estas características en la zona, nos enorgullece ser un referente de confianza para cientos de familias.
+                    </p>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="mt-1 text-primary"><span class="material-symbols-outlined">check_circle</span></div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Certificación Sanitaria</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Cumplimos con todos los estándares ministeriales.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="mt-1 text-primary"><span class="material-symbols-outlined">check_circle</span></div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Compromiso Local</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Arraigados profundamente en el bienestar de Nueva Imperial.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-secondary-container dark:bg-on-secondary-fixed-variant">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-4 md:px-margin-desktop py-12 w-full max-w-container-max mx-auto">
+<div class="space-y-6">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">FISIORED</div>
+<p class="font-body-md text-body-md text-on-secondary-container">Tu bienestar, nuestra prioridad. Medicina, rehabilitación y estimulación integral.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-primary flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-primary flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</a>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-md text-label-md font-bold text-on-secondary-container uppercase tracking-wider">Contacto</h4>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-on-secondary-container font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+                        Ernesto Riquelme 511, Nueva Imperial
+                    </li>
+<li class="flex items-center gap-3 text-on-secondary-container font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px]">call</span>
+                        +56 9 2009 2455
+                    </li>
+<li class="flex items-center gap-3 text-on-secondary-container font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+                        contacto@fisiored.cl
+                    </li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-md text-label-md font-bold text-on-secondary-container uppercase tracking-wider">Horario</h4>
+<ul class="space-y-2 text-on-secondary-container font-label-md text-label-md">
+<li class="flex justify-between"><span>Lunes - Viernes:</span> <span>09:00 - 20:00</span></li>
+<li class="flex justify-between"><span>Sábado:</span> <span>09:00 - 14:00</span></li>
+<li class="flex justify-between font-bold text-primary pt-2"><span>Atención previa cita</span></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-outline-variant/30 py-6 text-center text-on-secondary-container font-label-md text-label-md">
+            © 2024 Centro FisioRed Nueva Imperial. Todos los derechos reservados.
+        </div>
+</footer>
+<script>
+        // Simple scroll effect for navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+
+        // Basic button interaction
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+    </script>
+</body></html>
