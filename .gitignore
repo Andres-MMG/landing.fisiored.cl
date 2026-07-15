@@ -1,5 +1,6 @@
 # Build output
-dist/
+# NOTE: dist/ is committed so Hostinger static deploy works.
+# Cache files only stay ignored.
 .astro/
 
 # User-space tooling (not part of the project)
