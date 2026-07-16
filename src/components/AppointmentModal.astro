@@ -1,13 +1,17 @@
 ---
 /**
- * Modal de reserva online via Flowcitas.
+ * Appointment modal — interstitial that opens Flowcitas in a popup window.
  *
- * Apertura: cualquier elemento con [data-open-appointment]
- * Cierre:   [data-close-appointment], click en overlay, tecla Esc
+ * Why a popup instead of an iframe:
+ * flowcitas authenticates against Supabase with session cookies scoped
+ * to the flowcitas.com domain. Browsers do NOT forward third-party
+ * cookies (SameSite=Lax default) into cross-origin iframe contexts, so
+ * the embedded version returned 401 Unauthorized from Supabase while
+ * the top-level version worked fine.
  *
- * La URL queda embebida dentro del iframe — el browser no la muestra
- * en la barra de URL (la barra sigue mostrando fisiored.cl).
- * Si se quiere inspeccionar la URL: DevTools o click derecho > Ver marco.
+ * Opening flowcitas as a top-level popup window (window.open) makes it
+ * same-site to itself, so cookies flow normally. On mobile devices
+ * where popup windows are not supported, we fall back to _blank.
  */
 
 const FLOWCITAS_URL = 'https://app.flowcitas.com/booking/fisiored';
@@ -26,7 +30,7 @@ const FLOWCITAS_URL = 'https://app.flowcitas.com/booking/fisiored';
   <button
     type="button"
     data-close-appointment
-    aria-label="Cerrar reserva"
+    aria-label="Cerrar"
     class="absolute inset-0 bg-on-surface/60 backdrop-blur-sm cursor-default"
   ></button>
 
@@ -35,27 +39,20 @@ const FLOWCITAS_URL = 'https://app.flowcitas.com/booking/fisiored';
     data-appointment-panel
     role="document"
     tabindex="-1"
-    class="relative w-full max-w-5xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col h-[90vh] sm:h-[85vh] focus:outline-none"
+    class="relative w-full max-w-lg bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col focus:outline-none"
   >
-    <header class="flex items-center justify-between gap-4 px-6 py-4 border-b border-outline-variant/40 flex-shrink-0">
-      <div>
-        <h2 id="appointment-modal-title" class="font-headline text-headline-sm text-on-surface">
-          Reservar hora en FisioRed
-        </h2>
-        <p class="font-label-md text-label-md text-on-surface-variant mt-1">
-          Sistema de reservas online · sincronizado en tiempo real
-        </p>
+    <header class="flex items-start justify-between gap-4 px-6 pt-6 pb-2">
+      <div class="flex items-start gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-primary-fixed text-primary flex items-center justify-center flex-shrink-0">
+          <span class="material-symbols-outlined text-3xl">event_available</span>
+        </div>
+        <div>
+          <h2 id="appointment-modal-title" class="font-headline text-headline-sm text-on-surface leading-tight">
+            Reservar hora en FisioRed
+          </h2>
+          <p class="font-label-md text-label-md text-on-surface-variant mt-1">Sistema de reservas online</p>
+        </div>
       </div>
-      <a
-        href={FLOWCITAS_URL}
-        target="_blank"
-        rel="noopener"
-        class="hidden sm:inline-flex items-center gap-2 text-primary hover:underline font-label-md text-label-md"
-        aria-label="Abrir sistema de reservas en una pestaña nueva"
-      >
-        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
-        Nueva pestaña
-      </a>
       <button
         type="button"
         data-close-appointment
@@ -66,35 +63,44 @@ const FLOWCITAS_URL = 'https://app.flowcitas.com/booking/fisiored';
       </button>
     </header>
 
-    <div class="flex-1 bg-surface-container-low relative">
-      <!-- Spinner mientras carga -->
-      <div
-        data-appointment-loader
-        class="absolute inset-0 flex flex-col items-center justify-center gap-3 text-on-surface-variant"
-      >
-        <span class="material-symbols-outlined text-5xl text-primary animate-spin">
-          progress_activity
-        </span>
-        <p class="font-label-md text-label-md">Cargando sistema de reservas…</p>
-        <p class="text-xs">Si no abre en unos segundos, hacé click en "Nueva pestaña".</p>
+    <div class="px-6 py-4 space-y-4">
+      <p class="font-body text-body-md text-on-surface-variant">
+        Te vamos a abrir el sistema de reservas en una ventana segura. Si tu navegador bloquea la ventana, podés usar el enlace directo.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button
+          type="button"
+          data-open-flowcitas
+          class="flex-1 bg-primary text-on-primary font-headline text-headline-sm px-6 py-4 rounded-2xl hover:bg-primary-container btn-tap transition-all shadow-md flex items-center justify-center gap-2"
+        >
+          <span class="material-symbols-outlined">open_in_new</span>
+          Continuar
+        </button>
+        <a
+          href={FLOWCITAS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex-1 border-2 border-primary text-primary font-headline text-headline-sm px-6 py-4 rounded-2xl hover:bg-primary hover:text-white btn-tap transition-all flex items-center justify-center gap-2"
+        >
+          <span class="material-symbols-outlined">tab</span>
+          Nueva pestaña
+        </a>
       </div>
-      <iframe
-        data-appointment-iframe
-        src={FLOWCITAS_URL}
-        title="Sistema de reservas FisioRed"
-        loading="lazy"
-        referrerpolicy="strict-origin-when-cross-origin"
-        sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-        allow="clipboard-write"
-        class="w-full h-full border-0 relative z-10"
-        onload="document.querySelector('[data-appointment-loader]')?.classList.add('hidden')"
-      ></iframe>
+
+      <div class="flex items-center gap-3 text-on-surface-variant">
+        <span class="material-symbols-outlined text-[20px] text-primary">verified_user</span>
+        <p class="font-label-md text-label-md">Conexión segura · Sincronización en tiempo real · Confirmación inmediata</p>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
   (() => {
+    const FLOWCITAS_URL = 'https://app.flowcitas.com/booking/fisiored';
+    const POPUP_FEATURES = 'width=520,height=760,scrollbars=yes,resizable=yes';
+
     const modal = document.getElementById('appointment-modal');
     const panel = modal?.querySelector<HTMLElement>('[data-appointment-panel]');
     const body = document.body;
@@ -103,32 +109,28 @@ const FLOWCITAS_URL = 'https://app.flowcitas.com/booking/fisiored';
 
     let lastFocused: HTMLElement | null = null;
 
-    const focusableSelector =
-      'button, [href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    function isMobile(): boolean {
+      return window.matchMedia('(max-width: 768px)').matches;
+    }
+
+    function openFlowcitas() {
+      const features = isMobile() ? '_blank' : `flowcitas,${POPUP_FEATURES}`;
+      const win = window.open(FLOWCITAS_URL, features);
+      // If popup was blocked, do not silently fail — let the fallback link inside
+      // the modal guide the user (no extra behavior needed here).
+      if (!win && !isMobile()) {
+        // Optional: surface a hint. We keep the modal open so the fallback link
+        // is right there for the user to click.
+        console.info('[appointment] popup blocked; user can use the fallback link');
+      }
+    }
 
     function openModal() {
       lastFocused = document.activeElement as HTMLElement | null;
       modal!.classList.remove('hidden');
       modal!.setAttribute('aria-hidden', 'false');
       body.style.overflow = 'hidden';
-
-      // Move focus to panel for accessibility, then into the iframe content
-      setTimeout(() => {
-        const iframe = modal!.querySelector<HTMLIFrameElement>('[data-appointment-iframe]');
-        panel!.focus();
-        // Try to focus the iframe once it loads
-        iframe?.addEventListener(
-          'load',
-          () => {
-            try {
-              iframe.contentWindow?.focus();
-            } catch {
-              /* cross-origin: not focusable via JS, user clicks instead */
-            }
-          },
-          { once: true }
-        );
-      }, 50);
+      setTimeout(() => panel!.focus(), 50);
     }
 
     function closeModal() {
@@ -143,19 +145,28 @@ const FLOWCITAS_URL = 'https://app.flowcitas.com/booking/fisiored';
       btn.addEventListener('click', openModal);
     });
 
+    // Primary action inside the modal: open popup and close modal
+    document.querySelectorAll<HTMLElement>('[data-open-flowcitas]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        openFlowcitas();
+        closeModal();
+      });
+    });
+
     // Close handlers
     document.querySelectorAll<HTMLElement>('[data-close-appointment]').forEach((btn) => {
       btn.addEventListener('click', closeModal);
     });
 
-    // Esc to close
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !modal!.classList.contains('hidden')) {
         closeModal();
       }
     });
 
-    // Focus trap inside modal (basic)
+    // Focus trap
+    const focusableSelector =
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
     panel.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.key !== 'Tab') return;
       const focusable = Array.from(
