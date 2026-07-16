@@ -53,13 +53,31 @@ import Fab from '../components/Fab.astro';
       const isOpen = mobileMenu.classList.toggle('is-open');
       menuToggle.setAttribute('aria-expanded', String(isOpen));
     });
-    mobileMenu.querySelectorAll<HTMLAnchorElement>('a').forEach((link) => {
-      link.addEventListener('click', () => {
+    mobileMenu.querySelectorAll<HTMLElement>('a, button').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
         mobileMenu.classList.remove('is-open');
         menuToggle.setAttribute('aria-expanded', 'false');
       });
     });
   }
+
+  // CTAs de reserva en Flowcitas
+  const flowcitasDefaultUrl = 'https://app.flowcitas.com/booking/fisiored';
+  const openFlowcitas = (url: string) => {
+    const tab = window.open(url, '_blank', 'noopener,noreferrer');
+    if (tab) tab.opener = null;
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-book-flowcitas], [data-team-booking]').forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      const url = trigger.matches('[data-team-booking]')
+        ? trigger.dataset.url || flowcitasDefaultUrl
+        : flowcitasDefaultUrl;
+
+      openFlowcitas(url);
+    });
+  });
 
   // IntersectionObserver: reveal .section-fade elements
   const fadeEls = document.querySelectorAll<HTMLElement>('.section-fade');

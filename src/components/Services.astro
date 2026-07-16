@@ -19,10 +19,10 @@ const colSpan: Record<string, string> = {
           Contamos con instalaciones modernas para ofrecerte la mejor experiencia en cada sesión.
         </p>
       </div>
-      <a href="#contacto" class="text-primary font-label-md text-label-md font-bold flex items-center gap-2 hover:underline">
+      <button type="button" data-book-flowcitas class="text-primary font-label-md text-label-md font-bold flex items-center gap-2 hover:underline">
         Agendar evaluación
         <span class="material-symbols-outlined">arrow_forward</span>
-      </a>
+      </button>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
@@ -42,9 +42,9 @@ const colSpan: Record<string, string> = {
                   </div>
                   <h3 class="font-headline text-headline-md mb-4">{service.name}</h3>
                   <p class="font-body text-body-md text-white/80 mb-8">{service.description}</p>
-                  <a href="#contacto" class="block w-full bg-white text-primary text-center px-6 py-3 rounded-full font-label-md text-label-md hover:bg-opacity-90 btn-tap transition-all">
+                  <button type="button" data-book-flowcitas class="block w-full bg-white text-primary text-center px-6 py-3 rounded-full font-label-md text-label-md hover:bg-opacity-90 btn-tap transition-all">
                     {service.ctaLabel ?? 'Más información'}
-                  </a>
+                  </button>
                 </div>
               </article>
             );
@@ -66,9 +66,9 @@ const colSpan: Record<string, string> = {
                   <a href="#equipo" class="border-2 border-primary text-primary px-6 py-3 rounded-full font-label-md text-label-md hover:bg-primary hover:text-white btn-tap transition-all text-center">
                     Conocer Especialistas
                   </a>
-                  <a href="#contacto" class="bg-primary text-white px-6 py-3 rounded-full font-label-md text-label-md hover:opacity-90 btn-tap transition-all text-center">
+                  <button type="button" data-book-flowcitas class="bg-primary text-white px-6 py-3 rounded-full font-label-md text-label-md hover:opacity-90 btn-tap transition-all text-center">
                     Agendar Hora
-                  </a>
+                  </button>
                 </div>
               </article>
             );

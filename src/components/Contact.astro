@@ -125,7 +125,7 @@ const asuntoOptions = [
             class="w-full h-14 bg-primary text-on-primary font-headline text-headline-sm rounded-2xl hover:bg-primary-container btn-tap transition-all shadow-lg disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             <span data-submit-label>Enviar consulta</span>
-            <span data-submit-spinner class="hidden material-symbols-outlined animate-spin">progress_activity</span>
+            <span data-submit-spinner class="material-symbols-outlined animate-spin" style="display: none;">progress_activity</span>
           </button>
 
           <p data-form-status class="font-label-md text-label-md text-center min-h-[1.5em]" role="status" aria-live="polite"></p>
@@ -192,7 +192,7 @@ const asuntoOptions = [
       // Reset UI
       submitBtn.disabled = true;
       submitLabel.textContent = 'Enviando...';
-      submitSpinner.classList.remove('hidden');
+      submitSpinner.style.display = 'inline-block';
       if (status) {
         status.textContent = '';
         status.className = 'font-label-md text-label-md text-center min-h-[1.5em] text-on-surface-variant';
@@ -247,7 +247,7 @@ const asuntoOptions = [
       } finally {
         submitBtn.disabled = false;
         submitLabel.textContent = 'Enviar consulta';
-        submitSpinner.classList.add('hidden');
+        submitSpinner.style.display = 'none';
       }
     });
   }
