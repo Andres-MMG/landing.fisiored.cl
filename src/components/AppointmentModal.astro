@@ -1,0 +1,176 @@
+---
+/**
+ * Modal de reserva online via Flowcitas.
+ *
+ * Apertura: cualquier elemento con [data-open-appointment]
+ * Cierre:   [data-close-appointment], click en overlay, tecla Esc
+ *
+ * La URL queda embebida dentro del iframe — el browser no la muestra
+ * en la barra de URL (la barra sigue mostrando fisiored.cl).
+ * Si se quiere inspeccionar la URL: DevTools o click derecho > Ver marco.
+ */
+
+const FLOWCITAS_URL = 'https://app.flowcitas.com/booking/fisiored';
+---
+
+<div
+  id="appointment-modal"
+  data-appointment-modal
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="appointment-modal-title"
+  aria-hidden="true"
+  class="hidden fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6"
+>
+  <!-- Overlay -->
+  <button
+    type="button"
+    data-close-appointment
+    aria-label="Cerrar reserva"
+    class="absolute inset-0 bg-on-surface/60 backdrop-blur-sm cursor-default"
+  ></button>
+
+  <!-- Panel -->
+  <div
+    data-appointment-panel
+    role="document"
+    tabindex="-1"
+    class="relative w-full max-w-5xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col h-[90vh] sm:h-[85vh] focus:outline-none"
+  >
+    <header class="flex items-center justify-between gap-4 px-6 py-4 border-b border-outline-variant/40 flex-shrink-0">
+      <div>
+        <h2 id="appointment-modal-title" class="font-headline text-headline-sm text-on-surface">
+          Reservar hora en FisioRed
+        </h2>
+        <p class="font-label-md text-label-md text-on-surface-variant mt-1">
+          Sistema de reservas online · sincronizado en tiempo real
+        </p>
+      </div>
+      <a
+        href={FLOWCITAS_URL}
+        target="_blank"
+        rel="noopener"
+        class="hidden sm:inline-flex items-center gap-2 text-primary hover:underline font-label-md text-label-md"
+        aria-label="Abrir sistema de reservas en una pestaña nueva"
+      >
+        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+        Nueva pestaña
+      </a>
+      <button
+        type="button"
+        data-close-appointment
+        aria-label="Cerrar"
+        class="w-10 h-10 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface flex items-center justify-center transition-colors flex-shrink-0"
+      >
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </header>
+
+    <div class="flex-1 bg-surface-container-low relative">
+      <!-- Spinner mientras carga -->
+      <div
+        data-appointment-loader
+        class="absolute inset-0 flex flex-col items-center justify-center gap-3 text-on-surface-variant"
+      >
+        <span class="material-symbols-outlined text-5xl text-primary animate-spin">
+          progress_activity
+        </span>
+        <p class="font-label-md text-label-md">Cargando sistema de reservas…</p>
+        <p class="text-xs">Si no abre en unos segundos, hacé click en "Nueva pestaña".</p>
+      </div>
+      <iframe
+        data-appointment-iframe
+        src={FLOWCITAS_URL}
+        title="Sistema de reservas FisioRed"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        allow="clipboard-write"
+        class="w-full h-full border-0 relative z-10"
+        onload="document.querySelector('[data-appointment-loader]')?.classList.add('hidden')"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const modal = document.getElementById('appointment-modal');
+    const panel = modal?.querySelector<HTMLElement>('[data-appointment-panel]');
+    const body = document.body;
+
+    if (!modal || !panel) return;
+
+    let lastFocused: HTMLElement | null = null;
+
+    const focusableSelector =
+      'button, [href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+    function openModal() {
+      lastFocused = document.activeElement as HTMLElement | null;
+      modal!.classList.remove('hidden');
+      modal!.setAttribute('aria-hidden', 'false');
+      body.style.overflow = 'hidden';
+
+      // Move focus to panel for accessibility, then into the iframe content
+      setTimeout(() => {
+        const iframe = modal!.querySelector<HTMLIFrameElement>('[data-appointment-iframe]');
+        panel!.focus();
+        // Try to focus the iframe once it loads
+        iframe?.addEventListener(
+          'load',
+          () => {
+            try {
+              iframe.contentWindow?.focus();
+            } catch {
+              /* cross-origin: not focusable via JS, user clicks instead */
+            }
+          },
+          { once: true }
+        );
+      }, 50);
+    }
+
+    function closeModal() {
+      modal!.classList.add('hidden');
+      modal!.setAttribute('aria-hidden', 'true');
+      body.style.overflow = '';
+      lastFocused?.focus();
+    }
+
+    // Triggers
+    document.querySelectorAll<HTMLElement>('[data-open-appointment]').forEach((btn) => {
+      btn.addEventListener('click', openModal);
+    });
+
+    // Close handlers
+    document.querySelectorAll<HTMLElement>('[data-close-appointment]').forEach((btn) => {
+      btn.addEventListener('click', closeModal);
+    });
+
+    // Esc to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal!.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    // Focus trap inside modal (basic)
+    panel.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      const focusable = Array.from(
+        modal!.querySelectorAll<HTMLElement>(focusableSelector)
+      ).filter((el) => !el.hasAttribute('disabled'));
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        last.focus();
+        e.preventDefault();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        first.focus();
+        e.preventDefault();
+      }
+    });
+  })();
+</script>
