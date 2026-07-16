@@ -113,14 +113,16 @@ const FLOWCITAS_URL = 'https://app.flowcitas.com/booking/fisiored';
       return window.matchMedia('(max-width: 768px)').matches;
     }
 
-    function openFlowcitas() {
+    /**
+     * Open Flowcitas in a top-level popup window (520x760). On mobile
+     * browsers fall back to a new tab. Pass a specific URL to deep-link
+     * a professional (?professional=ID); otherwise the generic
+     * booking page is opened.
+     */
+    function openFlowcitas(url: string = FLOWCITAS_URL) {
       const features = isMobile() ? '_blank' : `flowcitas,${POPUP_FEATURES}`;
-      const win = window.open(FLOWCITAS_URL, features);
-      // If popup was blocked, do not silently fail — let the fallback link inside
-      // the modal guide the user (no extra behavior needed here).
+      const win = window.open(url, features);
       if (!win && !isMobile()) {
-        // Optional: surface a hint. We keep the modal open so the fallback link
-        // is right there for the user to click.
         console.info('[appointment] popup blocked; user can use the fallback link');
       }
     }
@@ -143,6 +145,17 @@ const FLOWCITAS_URL = 'https://app.flowcitas.com/booking/fisiored';
     // Triggers
     document.querySelectorAll<HTMLElement>('[data-open-appointment]').forEach((btn) => {
       btn.addEventListener('click', openModal);
+    });
+
+    // Per-professional booking buttons inside Team cards.
+    // Each button carries its URL in data-url; we open the popup directly
+    // without showing the interstitial modal (faster path).
+    document.querySelectorAll<HTMLElement>('[data-team-booking]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = btn.dataset.url || FLOWCITAS_URL;
+        openFlowcitas(url);
+      });
     });
 
     // Primary action inside the modal: open popup and close modal

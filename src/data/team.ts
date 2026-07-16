@@ -22,6 +22,10 @@ export type TeamMember = {
   };
   featured?: boolean;
   bullets?: string[];
+  /** Flowcitas professional ID — used to deep-link the booking popup. */
+  flowcitasId?: string;
+  /** Short label shown in the per-card reserve button, e.g. "Giovanni". */
+  shortName?: string;
 };
 
 /**
@@ -51,6 +55,8 @@ export const team: TeamMember[] = [
     image: giovanniTassistro,
     imageAlt: 'Retrato profesional de Giovanni Tassistro, kinesiólogo',
     badge: { text: 'Kinesiólogo', color: 'primary' },
+    flowcitasId: '16',
+    shortName: 'Giovanni',
   },
   {
     slug: 'maria-jose-bon',
@@ -59,6 +65,8 @@ export const team: TeamMember[] = [
     image: mariaJoseBon,
     imageAlt: 'Retrato profesional de Maria José Bon, kinesióloga',
     badge: { text: 'Kinesióloga', color: 'primary' },
+    flowcitasId: '13',
+    shortName: 'Maria José',
   },
   {
     slug: 'maria-castillo',
@@ -69,6 +77,8 @@ export const team: TeamMember[] = [
     badge: { text: 'Médico Pediatra', color: 'tertiary' },
     featured: true,
     bullets: ['Control Niño Sano', 'Patologías Agudas'],
+    flowcitasId: '12',
+    shortName: 'Dra. Castillo',
   },
   {
     slug: 'david-carrasco',
@@ -77,6 +87,8 @@ export const team: TeamMember[] = [
     image: davidCarrasco,
     imageAlt: 'Retrato profesional de David Carrasco, kinesiólogo',
     badge: { text: 'Kinesiólogo', color: 'primary' },
+    flowcitasId: '17',
+    shortName: 'David',
   },
   {
     slug: 'jonathan-nahuel',
@@ -85,6 +97,8 @@ export const team: TeamMember[] = [
     image: jonathanNahuel,
     imageAlt: 'Retrato profesional de Jonathan Nahuel, kinesiólogo',
     badge: { text: 'Kinesiólogo', color: 'primary' },
+    flowcitasId: '10',
+    shortName: 'Jonathan',
   },
   {
     slug: 'yasna-borquez',
@@ -93,6 +107,8 @@ export const team: TeamMember[] = [
     image: yasnaBorquez,
     imageAlt: 'Retrato profesional de Yasna Borquez, fonoaudióloga',
     badge: { text: 'Fonoaudióloga', color: 'secondary' },
+    flowcitasId: '14',
+    shortName: 'Yasna',
   },
   {
     slug: 'carolina-espinoza',
@@ -101,6 +117,8 @@ export const team: TeamMember[] = [
     image: unsplash('photo-1573496359142-b8d87734a5a2'),
     imageAlt: 'Retrato profesional de Carolina Espinoza, nutricionista',
     badge: { text: 'Nutricionista', color: 'secondary' },
+    flowcitasId: '11',
+    shortName: 'Carolina',
   },
   {
     slug: 'elizabeth-gallardo',
@@ -109,6 +127,8 @@ export const team: TeamMember[] = [
     image: elizabethGallardo,
     imageAlt: 'Retrato profesional de Elizabeth Gallardo, terapeuta ocupacional',
     badge: { text: 'Terapeuta Ocupacional', color: 'tertiary-container' },
+    flowcitasId: '15',
+    shortName: 'Elizabeth',
   },
 ] as const;
 
