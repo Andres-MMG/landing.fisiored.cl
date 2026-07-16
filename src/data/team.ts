@@ -55,7 +55,7 @@ export const team: TeamMember[] = [
     image: giovanniTassistro,
     imageAlt: 'Retrato profesional de Giovanni Tassistro, kinesiólogo',
     badge: { text: 'Kinesiólogo', color: 'primary' },
-    flowcitasId: '16',
+    flowcitasId: '10',
     shortName: 'Giovanni',
   },
   {
@@ -65,7 +65,7 @@ export const team: TeamMember[] = [
     image: mariaJoseBon,
     imageAlt: 'Retrato profesional de Maria José Bon, kinesióloga',
     badge: { text: 'Kinesióloga', color: 'primary' },
-    flowcitasId: '13',
+    flowcitasId: '11',
     shortName: 'Maria José',
   },
   {
@@ -87,7 +87,7 @@ export const team: TeamMember[] = [
     image: davidCarrasco,
     imageAlt: 'Retrato profesional de David Carrasco, kinesiólogo',
     badge: { text: 'Kinesiólogo', color: 'primary' },
-    flowcitasId: '17',
+    flowcitasId: '13',
     shortName: 'David',
   },
   {
@@ -97,7 +97,7 @@ export const team: TeamMember[] = [
     image: jonathanNahuel,
     imageAlt: 'Retrato profesional de Jonathan Nahuel, kinesiólogo',
     badge: { text: 'Kinesiólogo', color: 'primary' },
-    flowcitasId: '10',
+    flowcitasId: '14',
     shortName: 'Jonathan',
   },
   {
@@ -107,7 +107,7 @@ export const team: TeamMember[] = [
     image: yasnaBorquez,
     imageAlt: 'Retrato profesional de Yasna Borquez, fonoaudióloga',
     badge: { text: 'Fonoaudióloga', color: 'secondary' },
-    flowcitasId: '14',
+    flowcitasId: '15',
     shortName: 'Yasna',
   },
   {
@@ -117,7 +117,7 @@ export const team: TeamMember[] = [
     image: unsplash('photo-1573496359142-b8d87734a5a2'),
     imageAlt: 'Retrato profesional de Carolina Espinoza, nutricionista',
     badge: { text: 'Nutricionista', color: 'secondary' },
-    flowcitasId: '11',
+    flowcitasId: '16',
     shortName: 'Carolina',
   },
   {
@@ -127,7 +127,7 @@ export const team: TeamMember[] = [
     image: elizabethGallardo,
     imageAlt: 'Retrato profesional de Elizabeth Gallardo, terapeuta ocupacional',
     badge: { text: 'Terapeuta Ocupacional', color: 'tertiary-container' },
-    flowcitasId: '15',
+    flowcitasId: '17',
     shortName: 'Elizabeth',
   },
 ] as const;
