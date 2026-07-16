@@ -10,8 +10,10 @@
  *   - automatic 400 on invalid body
  *
  * Env vars required at runtime:
- *   SMTP_USER  — Gmail address sending the mail (e.g. contacto@fisiored.cl)
- *   SMTP_PASS  — 16-char Google App Password (not the regular account password)
+ *   SMTP_HOST  — SMTP server hostname (defaults to smtp.hostinger.com)
+ *   SMTP_PORT  — SMTP port (defaults to 465, SSL)
+ *   SMTP_USER  — sending account (e.g. contacto@fisiored.cl)
+ *   SMTP_PASS  — password for that account
  *   MAIL_TO    — destination address (defaults to contacto@fisiored.cl)
  */
 
@@ -157,10 +159,12 @@ const app = new Hono()
       }
 
       try {
+        const smtpHost = import.meta.env.SMTP_HOST ?? 'smtp.hostinger.com';
+        const smtpPort = Number(import.meta.env.SMTP_PORT ?? 465);
         const transporter = nodemailer.createTransport({
-          host: 'smtp.gmail.com',
-          port: 465,
-          secure: true,
+          host: smtpHost,
+          port: smtpPort,
+          secure: smtpPort === 465,
           auth: { user: smtpUser, pass: smtpPass },
         });
 
