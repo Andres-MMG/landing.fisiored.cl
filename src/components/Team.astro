@@ -16,6 +16,12 @@ function isImageMetadata(value: TeamMember['image']): value is ImageMetadata {
   return typeof value !== 'string';
 }
 
+function objectPositionClass(position: string | undefined): string {
+  if (!position) return 'object-top';
+  // Arbitrary value: object-[<value>]
+  return `object-[${position}]`;
+}
+
 const flowcitasBaseUrl = 'https://app.flowcitas.com/booking/fisiored';
 const bookingUrlFor = (id: string | undefined) =>
   id ? `${flowcitasBaseUrl}?professional=${id}` : null;
@@ -53,7 +59,7 @@ const whatsappUrlFor = (name: string) =>
                   <Image
                     src={member.image}
                     alt={member.imageAlt}
-                    class="profile-img w-full h-full object-cover object-top"
+                    class={`profile-img w-full h-full object-cover ${objectPositionClass(member.featured ? undefined : member.imagePosition)}`}
                     widths={[400, 600, 900]}
                     sizes="(min-width: 1024px) 50vw, 100vw"
                     loading="lazy"
@@ -62,7 +68,7 @@ const whatsappUrlFor = (name: string) =>
                   <img
                     src={member.image}
                     alt={member.imageAlt}
-                    class="profile-img w-full h-full object-cover object-top"
+                    class={`profile-img w-full h-full object-cover ${objectPositionClass(member.featured ? undefined : member.imagePosition)}`}
                     loading="lazy"
                   />
                 )}
@@ -119,7 +125,7 @@ const whatsappUrlFor = (name: string) =>
                   <Image
                     src={member.image}
                     alt={member.imageAlt}
-                    class="profile-img w-full h-full object-cover object-top"
+                    class={`profile-img w-full h-full object-cover ${objectPositionClass(member.imagePosition)}`}
                     widths={[300, 600]}
                     sizes="(min-width: 1024px) 25vw, 50vw"
                     loading="lazy"
@@ -128,7 +134,7 @@ const whatsappUrlFor = (name: string) =>
                   <img
                     src={member.image}
                     alt={member.imageAlt}
-                    class="profile-img w-full h-full object-cover object-top"
+                    class={`profile-img w-full h-full object-cover ${objectPositionClass(member.imagePosition)}`}
                     loading="lazy"
                   />
                 )}

@@ -26,6 +26,13 @@ export type TeamMember = {
   flowcitasId?: string;
   /** Short label shown in the per-card reserve button, e.g. "Giovanni". */
   shortName?: string;
+  /**
+   * Per-photo object-position override (Tailwind arbitrary value).
+   * When set, replaces the default 'object-top' so we can compensate for
+   * photos whose composition leaves too much headroom.
+   * Example: 'center 28%'
+   */
+  imagePosition?: string;
 };
 
 /**
@@ -129,6 +136,7 @@ export const team: TeamMember[] = [
     badge: { text: 'Terapeuta Ocupacional', color: 'tertiary-container' },
     flowcitasId: '17',
     shortName: 'Elizabeth',
+    imagePosition: 'center 28%',
   },
 ] as const;
 
