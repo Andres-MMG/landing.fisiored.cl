@@ -136,7 +136,6 @@ export const team: TeamMember[] = [
     badge: { text: 'Terapeuta Ocupacional', color: 'tertiary-container' },
     flowcitasId: '17',
     shortName: 'Elizabeth',
-    imagePosition: 'center 28%',
   },
 ] as const;
 
