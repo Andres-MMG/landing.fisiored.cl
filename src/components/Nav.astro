@@ -32,17 +32,17 @@ const navLinks = [
           </a>
         ))
       }
-      <a
-        href="#contacto"
+      <button
+        type="button"
+        data-book-flowcitas
         class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 btn-tap transition-all shadow-sm"
       >
         Agendar Hora
-      </a>
+      </button>
       <button
         type="button"
-        data-open-appointment
+        data-book-flowcitas
         class="border-2 border-primary text-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:bg-primary hover:text-white btn-tap transition-all inline-flex items-center gap-2"
-        aria-haspopup="dialog"
       >
         <span class="material-symbols-outlined text-[18px]">event_available</span>
         Reservar online
@@ -79,12 +79,13 @@ const navLinks = [
           <a href={link.href} class="font-label-md text-label-md text-on-surface-variant">{link.label}</a>
         ))
       }
-      <a
-        href="#contacto"
+      <button
+        type="button"
+        data-book-flowcitas
         class="bg-primary text-on-primary text-center px-6 py-3 rounded-full font-label-md text-label-md"
       >
         Agendar Hora
-      </a>
+      </button>
     </div>
   </div>
 </header>
