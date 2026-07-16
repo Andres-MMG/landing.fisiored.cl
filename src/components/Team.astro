@@ -17,7 +17,8 @@ function isImageMetadata(value: TeamMember['image']): value is ImageMetadata {
 }
 
 const flowcitasBaseUrl = 'https://app.flowcitas.com/booking/fisiored';
-const bookingUrlFor = (id: string) => `${flowcitasBaseUrl}?professional=${id}`;
+const bookingUrlFor = (id: string | undefined) =>
+  id ? `${flowcitasBaseUrl}?professional=${id}` : null;
 const whatsappUrlFor = (name: string) =>
   `${clinic.whatsappUrl}?text=${encodeURIComponent(
     `Hola, quiero reservar una hora con ${name} en FisioRed.`
@@ -86,15 +87,17 @@ const whatsappUrlFor = (name: string) =>
                   ))}
                 </div>
                 <div class="flex flex-col sm:flex-row gap-3">
-                  <button
-                    type="button"
-                    data-team-booking
-                    data-url={bookingUrlFor(member.flowcitasId)}
-                    class="bg-primary text-white py-3 px-6 rounded-full font-label-md text-label-md self-start hover:shadow-lg btn-tap transition-all flex items-center gap-2"
-                  >
-                    <span class="material-symbols-outlined text-[18px]">event_available</span>
-                    Reservar con {member.shortName ?? member.name}
-                  </button>
+                  {bookingUrlFor(member.flowcitasId) && (
+                    <button
+                      type="button"
+                      data-team-booking
+                      data-url={bookingUrlFor(member.flowcitasId)}
+                      class="bg-primary text-white py-3 px-6 rounded-full font-label-md text-label-md self-start hover:shadow-lg btn-tap transition-all flex items-center gap-2"
+                    >
+                      <span class="material-symbols-outlined text-[18px]">event_available</span>
+                      Reservar con {member.shortName ?? member.name}
+                    </button>
+                  )}
                   <a
                     href={whatsappUrlFor(member.name)}
                     target="_blank"
@@ -139,15 +142,17 @@ const whatsappUrlFor = (name: string) =>
                 <h3 class="font-headline text-headline-sm text-on-surface mb-1">{member.name}</h3>
                 <p class="font-body text-body-md text-on-surface-variant mb-4">{member.specialty}</p>
                 <div class="mt-auto space-y-2">
-                  <button
-                    type="button"
-                    data-team-booking
-                    data-url={bookingUrlFor(member.flowcitasId)}
-                    class="w-full bg-primary text-white py-2.5 rounded-lg font-label-md text-label-md hover:bg-primary-container btn-tap transition-all flex items-center justify-center gap-2"
-                  >
-                    <span class="material-symbols-outlined text-[18px]">event_available</span>
-                    Reservar con {member.shortName ?? member.name}
-                  </button>
+                  {bookingUrlFor(member.flowcitasId) && (
+                    <button
+                      type="button"
+                      data-team-booking
+                      data-url={bookingUrlFor(member.flowcitasId)}
+                      class="w-full bg-primary text-white py-2.5 rounded-lg font-label-md text-label-md hover:bg-primary-container btn-tap transition-all flex items-center justify-center gap-2"
+                    >
+                      <span class="material-symbols-outlined text-[18px]">event_available</span>
+                      Reservar con {member.shortName ?? member.name}
+                    </button>
+                  )}
                   <a
                     href={whatsappUrlFor(member.name)}
                     target="_blank"
