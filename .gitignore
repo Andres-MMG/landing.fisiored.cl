@@ -163,3 +163,9 @@ vite.config.ts.timestamp-*
 # Local build archives
 *.zip
 
+# Local env files (never commit secrets)
+.env
+.env.local
+.env.*.local
+!/.env.example
+

@@ -1,9 +1,14 @@
 ---
-import { services } from '../data/services';
-
 const whatsappUrl = 'https://wa.me/56920092455';
 const directionsUrl =
   'https://www.google.com/maps/search/?api=1&query=Ernesto+Riquelme+511+Nueva+Imperial';
+
+const asuntoOptions = [
+  { value: 'general', label: 'Información general' },
+  { value: 'servicios', label: 'Consulta sobre servicios' },
+  { value: 'convenios', label: 'Coberturas y convenios' },
+  { value: 'otro', label: 'Otro' },
+];
 ---
 
 <section id="contacto" class="relative pt-12 pb-20 md:pb-24 px-4 md:px-margin-desktop max-w-container-max mx-auto overflow-hidden">
@@ -16,12 +21,27 @@ const directionsUrl =
         <span class="bg-primary-fixed text-on-primary-fixed px-4 py-1 rounded-full font-label-md text-label-md inline-block">Contáctanos</span>
         <h2 class="font-headline text-headline-xl text-on-surface">Estamos en el corazón de <span class="text-primary">Nueva Imperial</span></h2>
         <p class="font-body text-body-lg text-on-surface-variant max-w-2xl">
-          Visítanos en nuestras instalaciones diseñadas para tu comodidad y recuperación.
-          Nuestro equipo de profesionales está listo para acompañarte en tu proceso de bienestar.
+          Reservá online, escribinos por WhatsApp o dejanos tu consulta en el formulario.
+          Te respondemos dentro del horario de atención.
         </p>
       </div>
 
       <div class="lg:col-span-5 grid grid-cols-1 gap-4">
+        <button
+          type="button"
+          data-book-flowcitas
+          class="group flex flex-col justify-between p-6 bg-primary text-on-primary rounded-2xl shadow-lg hover:-translate-y-1 transition-all duration-300 text-left"
+        >
+          <div class="flex justify-between items-start">
+            <span class="material-symbols-outlined text-4xl">event_available</span>
+            <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+          </div>
+          <div class="mt-6">
+            <p class="font-headline text-headline-sm">Reservar online</p>
+            <p class="font-body text-body-md opacity-90">Confirmación inmediata · 24/7</p>
+          </div>
+        </button>
+
         <a href={whatsappUrl} target="_blank" rel="noopener" class="group flex flex-col justify-between p-6 bg-whatsapp text-white rounded-2xl shadow-lg hover:-translate-y-1 transition-all duration-300">
           <div class="flex justify-between items-start">
             <span class="material-symbols-outlined text-4xl">chat</span>
@@ -32,17 +52,6 @@ const directionsUrl =
             <p class="font-body text-body-md opacity-90">+56 9 2009 2455</p>
           </div>
         </a>
-
-        <button type="button" data-open-appointment aria-haspopup="dialog" class="group flex flex-col justify-between p-6 bg-primary text-on-primary rounded-2xl shadow-lg hover:-translate-y-1 transition-all duration-300 text-left">
-          <div class="flex justify-between items-start">
-            <span class="material-symbols-outlined text-4xl">event_available</span>
-            <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
-          </div>
-          <div class="mt-6">
-            <p class="font-headline text-headline-sm">Reservar online</p>
-            <p class="font-body text-body-md opacity-90">Confirmación inmediata</p>
-          </div>
-        </button>
 
         <div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant shadow-sm flex flex-col gap-4">
           <div class="flex items-center gap-4">
@@ -68,41 +77,58 @@ const directionsUrl =
       </div>
     </div>
 
-    <!-- Form -->
+    <!-- Contact form -->
     <div class="bg-white rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
       <div class="p-8 md:p-12 lg:p-16">
-        <h3 class="font-headline text-headline-lg text-on-surface mb-2">Agendar Hora</h3>
-        <p class="text-on-surface-variant mb-8">Completa tus datos y nos pondremos en contacto para confirmar tu cita.</p>
+        <h3 class="font-headline text-headline-lg text-on-surface mb-2">Envíanos tu consulta</h3>
+        <p class="text-on-surface-variant mb-8">Te respondemos al email que indiques, dentro del horario de atención.</p>
 
         <form data-contact-form class="space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="form-field space-y-2">
-              <label class="form-label font-label-md text-label-md text-on-surface" for="nombre">Nombre Completo</label>
-              <input id="nombre" name="nombre" class="form-control w-full h-12 px-4 rounded-xl border border-outline-variant bg-surface" placeholder="Ej: Juan Pérez" type="text" required />
+              <label class="form-label font-label-md text-label-md text-on-surface" for="nombre">Nombre completo</label>
+              <input id="nombre" name="nombre" autocomplete="name" required class="form-control w-full h-12 px-4 rounded-xl border border-outline-variant bg-surface" placeholder="Ej: Juan Pérez" type="text" />
             </div>
             <div class="form-field space-y-2">
-              <label class="form-label font-label-md text-label-md text-on-surface" for="telefono">Teléfono / WhatsApp</label>
-              <input id="telefono" name="telefono" class="form-control w-full h-12 px-4 rounded-xl border border-outline-variant bg-surface" placeholder="+56 9 ..." type="tel" required />
+              <label class="form-label font-label-md text-label-md text-on-surface" for="email">Email</label>
+              <input id="email" name="email" autocomplete="email" required class="form-control w-full h-12 px-4 rounded-xl border border-outline-variant bg-surface" placeholder="juan@ejemplo.cl" type="email" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="form-field space-y-2">
+              <label class="form-label font-label-md text-label-md text-on-surface" for="telefono">Teléfono (opcional)</label>
+              <input id="telefono" name="telefono" autocomplete="tel" class="form-control w-full h-12 px-4 rounded-xl border border-outline-variant bg-surface" placeholder="+56 9 ..." type="tel" />
+            </div>
+            <div class="form-field space-y-2">
+              <label class="form-label font-label-md text-label-md text-on-surface" for="asunto">Asunto</label>
+              <select id="asunto" name="asunto" required class="form-control w-full h-12 px-4 rounded-xl border border-outline-variant bg-surface">
+                {asuntoOptions.map((opt) => <option value={opt.value}>{opt.label}</option>)}
+              </select>
             </div>
           </div>
 
           <div class="form-field space-y-2">
-            <label class="form-label font-label-md text-label-md text-on-surface" for="servicio">Servicio de Interés</label>
-            <select id="servicio" name="servicio" class="form-control w-full h-12 px-4 rounded-xl border border-outline-variant bg-surface">
-              {services.map((s) => <option>{s.name}</option>)}
-            </select>
+            <label class="form-label font-label-md text-label-md text-on-surface" for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" required minlength="10" maxlength="2000" class="form-control w-full p-4 rounded-xl border border-outline-variant bg-surface resize-none" placeholder="Cuéntanos cómo podemos ayudarte..." rows="4"></textarea>
           </div>
 
-          <div class="form-field space-y-2">
-            <label class="form-label font-label-md text-label-md text-on-surface" for="mensaje">Mensaje (Opcional)</label>
-            <textarea id="mensaje" name="mensaje" class="form-control w-full p-4 rounded-xl border border-outline-variant bg-surface resize-none" placeholder="Cuéntanos brevemente el motivo de tu consulta..." rows="3"></textarea>
+          <!-- Honeypot: invisible to humans, bait for bots -->
+          <div aria-hidden="true" class="absolute opacity-0 pointer-events-none -left-[9999px] h-0 overflow-hidden">
+            <label for="website">No completar este campo</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
           </div>
 
-          <button type="submit" class="w-full h-14 bg-primary text-on-primary font-headline text-headline-sm rounded-2xl hover:bg-primary-container btn-tap transition-all shadow-lg">
-            Enviar Solicitud
+          <button
+            type="submit"
+            data-submit
+            class="w-full h-14 bg-primary text-on-primary font-headline text-headline-sm rounded-2xl hover:bg-primary-container btn-tap transition-all shadow-lg disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          >
+            <span data-submit-label>Enviar consulta</span>
+            <span data-submit-spinner class="hidden material-symbols-outlined animate-spin">progress_activity</span>
           </button>
 
-          <p data-form-status class="font-label-md text-label-md text-center" role="status" aria-live="polite"></p>
+          <p data-form-status class="font-label-md text-label-md text-center min-h-[1.5em]" role="status" aria-live="polite"></p>
         </form>
       </div>
 
@@ -149,25 +175,80 @@ const directionsUrl =
 </section>
 
 <script>
-  // Form handling — wire to a real endpoint when the backend is ready.
+  // Contact form: posts to the Hono endpoint, handles loading/success/error.
   const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
-  if (form) {
-    const status = form.querySelector<HTMLParagraphElement>('[data-form-status]');
-    form.addEventListener('submit', (e) => {
+  const status = document.querySelector<HTMLParagraphElement>('[data-form-status]');
+  const submitBtn = document.querySelector<HTMLButtonElement>('[data-submit]');
+  const submitLabel = document.querySelector<HTMLSpanElement>('[data-submit-label]');
+  const submitSpinner = document.querySelector<HTMLSpanElement>('[data-submit-spinner]');
+
+  if (form && submitBtn && submitLabel && submitSpinner) {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (submitBtn.disabled) return;
+
       const data = Object.fromEntries(new FormData(form).entries());
+
+      // Reset UI
+      submitBtn.disabled = true;
+      submitLabel.textContent = 'Enviando...';
+      submitSpinner.classList.remove('hidden');
       if (status) {
-        status.textContent = 'Enviando solicitud...';
-        status.className = 'font-label-md text-on-surface-variant';
+        status.textContent = '';
+        status.className = 'font-label-md text-label-md text-center min-h-[1.5em] text-on-surface-variant';
       }
-      setTimeout(() => {
-        if (status) {
-          status.textContent =
-            '¡Gracias ' + (data.nombre || '') + '! Recibimos tu solicitud. Te contactaremos pronto.';
-          status.className = 'font-label-md text-primary';
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const body = (await res.json().catch(() => ({}))) as {
+          ok?: boolean;
+          error?: string;
+          errors?: Record<string, string[]>;
+        };
+
+        if (res.ok && body.ok) {
+          if (status) {
+            status.textContent = '¡Gracias! Recibimos tu consulta. Te respondemos al email que indicaste.';
+            status.className =
+              'font-label-md text-label-md text-center min-h-[1.5em] text-primary font-semibold';
+          }
+          form.reset();
+        } else if (res.status === 429) {
+          if (status) {
+            status.textContent = body.error ?? 'Demasiadas solicitudes. Probá en un minuto.';
+            status.className =
+              'font-label-md text-label-md text-center min-h-[1.5em] text-error';
+          }
+        } else if (res.status === 400 && body.errors) {
+          const first = Object.values(body.errors).flat()[0];
+          if (status) {
+            status.textContent = first ?? 'Revisá los datos e intentá de nuevo.';
+            status.className =
+              'font-label-md text-label-md text-center min-h-[1.5em] text-error';
+          }
+        } else {
+          if (status) {
+            status.textContent =
+              body.error ?? 'No pudimos enviar. Por favor escribinos por WhatsApp al +56 9 2009 2455.';
+            status.className =
+              'font-label-md text-label-md text-center min-h-[1.5em] text-error';
+          }
         }
-        form.reset();
-      }, 700);
+      } catch {
+        if (status) {
+          status.textContent = 'Error de red. Verificá tu conexión e intentá de nuevo.';
+          status.className =
+            'font-label-md text-label-md text-center min-h-[1.5em] text-error';
+        }
+      } finally {
+        submitBtn.disabled = false;
+        submitLabel.textContent = 'Enviar consulta';
+        submitSpinner.classList.add('hidden');
+      }
     });
   }
 </script>
